@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_02_010805) do
+ActiveRecord::Schema.define(version: 2022_02_02_040248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2022_02_02_010805) do
     t.string "peak_season"
     t.string "region"
     t.string "water_temp"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.boolean "in_playoffs"
+    t.integer "total_wins"
+    t.string "name"
+    t.string "city"
+    t.string "home_arena"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
