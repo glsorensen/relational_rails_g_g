@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/locations/new', to: 'locations#new'
   post '/locations', to: 'locations#create'
   get '/teams', to: 'teams#index'
+  get '/teams/:id', to: 'teams#show'
 end

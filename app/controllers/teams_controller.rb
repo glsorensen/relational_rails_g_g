@@ -3,11 +3,16 @@ class TeamsController < ApplicationController
     @teams = Teams.all
   end
 
+  def show
+    @team = Teams.find(params[:id])
+  end
+
   def new
 
   end
 
   def create
+    binding.pry
     team = Teams.new({
       title: params[:team][:title],
       in_playoffs: params[:team][:in_playoffs],
