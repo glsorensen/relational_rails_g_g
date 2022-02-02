@@ -2,8 +2,7 @@ require 'Date'
 
 class LocationsController < ApplicationController
   def index
-    #@locations = Locations.all
-    @locations = ["Key West", "Asia", "Europe"]
+    @locations = Locations.all
   end
 
   def new
@@ -11,7 +10,7 @@ class LocationsController < ApplicationController
   end
 
   def create
-    location = Location.new({
+    location = Locations.new({
       title: params[:location][:title],
       created_at: params[:location][:created_at],
       updated_at: params[:location][:updated_at],
