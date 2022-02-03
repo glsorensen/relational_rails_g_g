@@ -10,20 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_03_181925) do
+ActiveRecord::Schema.define(version: 2022_02_03_201620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "dives", force: :cascade do |t|
     t.string "title"
-    t.integer "location_id"
     t.boolean "beginner"
     t.integer "max_depth"
     t.string "current_strength"
     t.string "charter_loc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "location_id"
+    t.index ["location_id"], name: "index_dives_on_location_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -33,6 +34,8 @@ ActiveRecord::Schema.define(version: 2022_02_03_181925) do
     t.string "peak_season"
     t.string "region"
     t.string "water_temp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "description"
   end
 
@@ -55,4 +58,5 @@ ActiveRecord::Schema.define(version: 2022_02_03_181925) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "dives", "locations"
 end
