@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/locations/new', to: 'locations#new'
   post '/locations', to: 'locations#create'
   get '/locations/:id', to: 'locations#show'
-  get '/locations/:id/dives', to: 'locations_dives#show_dives' ## PROBABLY WRONG ROUTE
+  get '/locations/:id/dives', to: 'locations_dives#show'
   get '/dive', to: 'dives#index'
   get '/dive/:id', to: 'dives#show'
   get '/teams', to: 'teams#index'
