@@ -8,7 +8,8 @@ RSpec.describe 'dives show page', type: :feature do
   # Then I see the child with that id including the child's attributes:
   # it 'shows each dive and their attributes' do
     it 'finds dive by id and shows dive attributes' do
-    dive_1 = Dive.create(title: "Flahertys Cave", location_id: 1, beginner: false, max_depth:45, current_strength: "Strong", charter_loc: "Cozumel, MX")
+    location_1 = Location.create!(title: 'Key Largo', has_reefs: true, num_of_species: 600, peak_season: 'June - October', region: "North America", water_temp: "72F - 86F", description: "Great place")
+    dive_1 = Dive.create(title: "Flahertys Cave", location_id: location_1.id, beginner: false, max_depth:45, current_strength: "Strong", charter_loc: "Cozumel, MX")
 
     visit "/dive/#{dive_1.id}"
     # save_and_open_page

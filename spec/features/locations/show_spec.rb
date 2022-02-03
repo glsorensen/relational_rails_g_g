@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'locations show page', type: :feature do
 
   it 'finds locations by id and shows location attributes' do
-    location_1 = Locations.create(title: 'Key Largo', has_reefs: true, num_of_species: 600, peak_season: 'June - October', region: "North America", water_temp: "72F - 86F", description: "Great place")
+    location_1 = Location.create!(title: 'Key Largo', has_reefs: true, num_of_species: 600, peak_season: 'June - October', region: "North America", water_temp: "72F - 86F", description: "Great place")
 
     visit "/locations/#{location_1.id}"
 
