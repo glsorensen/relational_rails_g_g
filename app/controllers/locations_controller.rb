@@ -11,6 +11,12 @@ class LocationsController < ApplicationController
 
   end
 
+  def show_dives ### PROBABLY NOT GOING TO BE USED
+    binding.pry
+    @location = Locations.find(params[:id])
+    id = @location.id
+  end
+
   def create
     location = Locations.new({
       title: params[:location][:title],
