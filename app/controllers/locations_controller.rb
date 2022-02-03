@@ -1,8 +1,10 @@
-require 'Date'
-
 class LocationsController < ApplicationController
   def index
     @locations = Locations.all
+  end
+
+  def show
+    @location = Locations.find(params[:id])
   end
 
   def new
