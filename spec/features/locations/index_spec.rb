@@ -13,29 +13,34 @@ RSpec.describe 'locations index page', type: :feature do
     expect(page).to have_content(location_3.title)
   end
 
-  it 'finds locations by id and shows location attributes' do
-    location_1 = Locations.create(title: 'Key Largo', has_reefs: true, num_of_species: 600, peak_season: 'June - October', region: "North America", water_temp: "72F - 86F", description: "Great place")
-
-    visit "/locations/#{location_1.id}"
-
-    save_and_open_page
-    expect(current_path).to eq("/locations/#{location_1.id}")
-    expect(page).to have_content(location_1.title)
-    expect(page).to have_content(location_1.has_reefs)
-    expect(page).to have_content(location_1.num_of_species)
-    expect(page).to have_content(location_1.peak_season)
-    expect(page).to have_content(location_1.region)
-    expect(page).to have_content(location_1.water_temp)
-    expect(page).to have_content(location_1.description)
-  end
-
-#   User Story 4, Child Show (x2)
-#
+# User Story 5, Parent Children Index (x2)
 # As a visitor
-# When I visit '/child_table_name/:id'
-# Then I see the child with that id including the child's attributes:
+# When I visit '/parents/:parent_id/child_table_name'
+# Then I see each Child that is associated with that Parent with each Child's attributes:
+  it 'finds location and shows all dives with attributes for that location' do
+    location_1 = Locations.create(title: 'Key Largo')
+    dive_1 = Dive.create(title: "Flahertys Cave", location_id: location_1.id, beginner: false, max_depth:45, current_strength: "Strong", charter_loc: "Cozumel, MX")
+    dive_2 = Dive.create(title: "Sorensons Shore", location_id: location_1.id, beginner: false, max_depth:65, current_strength: "Moderate", charter_loc: "Cozumel, MX")
 
-  it 'finds dive by id and returns all its attributes' do
-    
+    visit "/locations/#{location_1.id}/dives"
+    save_and_open_page
+    expect(current_path).to eq("/locations/#{location_1.id}/dives")
+    expect(page).to have_content(location_1.title)
+    expect(page).to have_content(dive_1.title)
+    expect(page).to have_content(dive_1.location_id)
+    expect(page).to have_content(dive_1.beginner)
+    expect(page).to have_content(dive_1.max_depth)
+    expect(page).to have_content(dive_1.current_strength)
+    expect(page).to have_content(dive_1.charter_loc)
+    expect(page).to have_content(dive_1.created_at)
+    expect(page).to have_content(dive_1.updated_at)
+    expect(page).to have_content(dive_2.title)
+    expect(page).to have_content(dive_2.location_id)
+    expect(page).to have_content(dive_2.beginner)
+    expect(page).to have_content(dive_2.max_depth)
+    expect(page).to have_content(dive_2.current_strength)
+    expect(page).to have_content(dive_2.charter_loc)
+    expect(page).to have_content(dive_2.created_at)
+    expect(page).to have_content(dive_2.updated_at)
   end
 end
