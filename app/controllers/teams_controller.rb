@@ -1,10 +1,10 @@
 class TeamsController < ApplicationController
   def index
-    @teams = Teams.all
+    @teams = Team.all
   end
 
   def show
-    @team = Teams.find(params[:id])
+    @team = Team.find(params[:id])
   end
 
   def new
@@ -13,7 +13,7 @@ class TeamsController < ApplicationController
 
   def create
     binding.pry
-    team = Teams.new({
+    team = Team.new({
       title: params[:team][:title],
       in_playoffs: params[:team][:in_playoffs],
       total_wins: params[:team][:total_wins],

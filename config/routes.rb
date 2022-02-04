@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   get '/dive/:id', to: 'dives#show'
   get '/teams', to: 'teams#index'
   get '/teams/:id', to: 'teams#show'
+  get '/players/:id', to: 'players#show'
+  get '/players', to: 'players#index'
+  get '/teams/:id/players', to: 'teams_players#index'
 end
