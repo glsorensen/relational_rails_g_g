@@ -1,10 +1,11 @@
 class LocationsController < ApplicationController
   def index
-    @locations = Location.all
+    @locations = Location.created_by_order
   end
 
   def show
     @location = Location.find(params[:id])
+    @dives = @location.dives.count
   end
 
   def new

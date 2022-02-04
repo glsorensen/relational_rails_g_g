@@ -17,4 +17,11 @@ RSpec.describe 'dives index page', type: :feature do
     expect(page).to have_content(dive_1.created_at)
     expect(page).to have_content(dive_1.updated_at)
   end
+
+  xit 'user story 8' do
+    # User Story 8, Child Index Link
+    # As a visitor
+    # When I visit any page on the site
+    # Then I see a link at the top of the page that takes me to the Child Index
+  end
 end

@@ -24,4 +24,14 @@ RSpec.describe 'dive_locations index page', type: :feature do
     expect(page).to have_content(dive_2.created_at)
     expect(page).to have_content(dive_2.updated_at)
   end
+
+  xit 'user story 10' do
+    # User Story 10, Parent Child Index Link
+    #
+    # As a visitor
+    # When I visit a parent show page ('/parents/:id')
+    # Then I see a link to take me to that parent's `child_table_name` page ('/parents/:id/child_table_name')
+  end
+
+
 end
