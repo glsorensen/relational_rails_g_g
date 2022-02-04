@@ -50,4 +50,17 @@ RSpec.describe "Team index page", type: :feature do
     expect(page).to have_content(player_1.hometown)
     expect(page).to have_content(player_1.healthy)
   end
+
+  it "shows created at by order" do
+    team_1 = Team.create!(in_playoffs: true, total_wins: 43, name: "Avalanche", city: "Colorado", home_arena: "Ball Arena")
+    team_2 = Team.create!(in_playoffs: false, total_wins: 27, name: "Red Wings", city: "Detroit", home_arena: "Little Ceasers Arena")
+
+
+    visit "/teams"
+    # binding.pry
+    # save_and_open_page
+    # expect(current_path).to eq('/teams')
+    expect(team_1.name).to appear_before(team_2.name)
+
+  end
 end

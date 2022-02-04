@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   def index
-    @teams = Team.all
+    @teams = Team.order_by_created_first
   end
 
   def show
