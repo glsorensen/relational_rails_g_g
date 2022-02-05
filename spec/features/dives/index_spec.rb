@@ -6,7 +6,6 @@ RSpec.describe 'dives index page', type: :feature do
     dive_1 = Dive.create!(title: "Flahertys Cave", location_id: location_1.id, beginner: false, max_depth:45, current_strength: "Strong", charter_loc: "Cozumel, MX")
 
     visit '/dive'
-    save_and_open_page
     expect(current_path).to eq("/dive")
     expect(page).to have_content(dive_1.title)
     expect(page).to have_content(dive_1.location_id)
