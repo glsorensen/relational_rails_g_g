@@ -1,5 +1,10 @@
 <h1>All Locations</h1>
 
-<% @locations.each do |location| %>
-  <h3><%= location.title %></h3>
-<% end %>
+<div id = "locations">
+  <% @locations.each_with_index do |location, index| %>
+    <div class="location">
+      <p><%= location.title %></p>
+      <p>Created at: <%= location.created_at %></p>
+    </div>
+  <% end %>
+</div>

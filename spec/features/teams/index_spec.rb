@@ -29,7 +29,8 @@ RSpec.describe "Team index page", type: :feature do
   end
 
   it "shows each player in system and their attributes" do
-    player_1 = Player.create!(healthy: true, weight_lbs: 210, name: "Joe Sakic", hometown: "Burnaby, BC")
+    team_1 = Team.create!(in_playoffs: true, total_wins: 43, name: "Avalanche", city: "Colorado", home_arena: "Ball Arena")
+    player_1 = Player.create!(healthy: true, weight_lbs: 210, name: "Joe Sakic", hometown: "Burnaby, BC", team_id: team_1.id)
 
     visit "/players"
 
@@ -40,7 +41,8 @@ RSpec.describe "Team index page", type: :feature do
     expect(page).to have_content(player_1.healthy)
   end
   it "shows each player and their attributes" do
-    player_1 = Player.create!(healthy: true, weight_lbs: 210, name: "Joe Sakic", hometown: "Burnaby, BC")
+    team_1 = Team.create!(in_playoffs: true, total_wins: 43, name: "Avalanche", city: "Colorado", home_arena: "Ball Arena")
+    player_1 = Player.create!(healthy: true, weight_lbs: 210, name: "Joe Sakic", hometown: "Burnaby, BC", team_id: team_1.id)
 
     visit "/players/#{player_1.id}"
 
@@ -49,5 +51,25 @@ RSpec.describe "Team index page", type: :feature do
     expect(page).to have_content(player_1.name)
     expect(page).to have_content(player_1.hometown)
     expect(page).to have_content(player_1.healthy)
+  end
+
+  it "shows created at by order" do
+    team_1 = Team.create!(in_playoffs: true, total_wins: 43, name: "Avalanche", city: "Colorado", home_arena: "Ball Arena")
+    team_2 = Team.create!(in_playoffs: false, total_wins: 27, name: "Red Wings", city: "Detroit", home_arena: "Little Ceasers Arena")
+
+
+    visit "/teams"
+    # binding.pry
+    save_and_open_page
+    expect(current_path).to eq('/teams')
+    within "#teams" do
+      expect(page.all('.team')[0]).to have_content("Avalanche")
+      expect(page.all('.team')[1]).to have_content("Red Wings")
+    end
+
+   #expected_array = [ 'Avalanche', 'Red Wings' ]
+    #
+    # page.all.map(&:text).should eq(expected_array)
+
   end
 end
