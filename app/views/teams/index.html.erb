@@ -1,12 +1,10 @@
-<a href='/dive'>See All Dives</a>
-<a href='/locations'>See All Locations</a>
-<a href='/teams'>See All Teams</a>
-<a href='/player'>See All Players</a>
+
 <h1>All Teams</h1>
 <div id = "teams">
   <% @teams.each_with_index do |team, index| %>
     <div class= "team">
       <h3><%=team.name%></h3>
+      <p>Created at: <%= team.created_at %></p>
     </div>
   <% end %>
 </div>
