@@ -43,11 +43,9 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'shoulda-matchers', '~> 4.0'
-<<<<<<< HEAD
-=======
+
   gem 'orderly'
->>>>>>> dc9c05b7100674f758122689667f38cdb5b1f678
-end
+
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -61,3 +59,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'awesome_print'
 gem 'table_print'
 gem 'irbtools'
+end 
