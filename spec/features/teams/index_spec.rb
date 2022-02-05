@@ -58,9 +58,16 @@ RSpec.describe "Team index page", type: :feature do
 
     visit "/teams"
     # binding.pry
-    # save_and_open_page
-    # expect(current_path).to eq('/teams')
-    expect(team_1.name).to appear_before(team_2.name)
+    save_and_open_page
+    expect(current_path).to eq('/teams')
+    within "#teams" do
+      expect(page.all('.team')[0]).to have_content("Avalanche")
+      expect(page.all('.team')[1]).to have_content("Red Wings")
+    end
+
+   #expected_array = [ 'Avalanche', 'Red Wings' ]
+    #
+    # page.all.map(&:text).should eq(expected_array)
 
   end
 end

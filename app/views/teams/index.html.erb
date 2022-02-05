@@ -1,5 +1,8 @@
 <h1>All Teams</h1>
-
-<% @teams.each do |team| %>
-  <h3><%= team.name %></h3>
-<% end %>
+<div id = "teams">
+  <% @teams.each_with_index do |team, index| %>
+    <div class= "team">
+      <h3><%=team.name%></h3>
+    </div>
+  <% end %>
+</div>
