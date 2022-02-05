@@ -30,12 +30,4 @@ RSpec.describe 'locations index page', type: :feature do
       end
     end
   end
-
-  xit 'user story 9' do
-    # User Story 9, Parent Index Link
-    #
-    # As a visitor
-    # When I visit any page on the site
-    # Then I see a link at the top of the page that takes me to the Parent Index
-  end
 end
