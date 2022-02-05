@@ -29,7 +29,8 @@ RSpec.describe "Team index page", type: :feature do
   end
 
   it "shows each player in system and their attributes" do
-    player_1 = Player.create!(healthy: true, weight_lbs: 210, name: "Joe Sakic", hometown: "Burnaby, BC")
+    team_1 = Team.create!(in_playoffs: true, total_wins: 43, name: "Avalanche", city: "Colorado", home_arena: "Ball Arena")
+    player_1 = Player.create!(healthy: true, weight_lbs: 210, name: "Joe Sakic", hometown: "Burnaby, BC", team_id: team_1.id)
 
     visit "/players"
 
@@ -40,7 +41,8 @@ RSpec.describe "Team index page", type: :feature do
     expect(page).to have_content(player_1.healthy)
   end
   it "shows each player and their attributes" do
-    player_1 = Player.create!(healthy: true, weight_lbs: 210, name: "Joe Sakic", hometown: "Burnaby, BC")
+    team_1 = Team.create!(in_playoffs: true, total_wins: 43, name: "Avalanche", city: "Colorado", home_arena: "Ball Arena")
+    player_1 = Player.create!(healthy: true, weight_lbs: 210, name: "Joe Sakic", hometown: "Burnaby, BC", team_id: team_1.id)
 
     visit "/players/#{player_1.id}"
 
