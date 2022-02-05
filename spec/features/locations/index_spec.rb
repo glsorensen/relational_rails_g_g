@@ -21,16 +21,14 @@ RSpec.describe 'locations index page', type: :feature do
       location_1 = Location.create!(title: 'Key Largo', created_at: "04-02-1989")
       location_2 = Location.create!(title: 'San Diego', created_at: "01-02-2000")
       location_3 = Location.create!(title: 'Great Barrier Reef', created_at: "01-01-2021")
-
       visit '/locations'
       save_and_open_page
       expect(current_path).to eq('/locations')
-      expect(location_3.title).to appear_before(location_2.title)
-      expect(location_3.title).to appear_before(location_2.title)
-      expect(location_2.title).to appear_before(location_1.title)
-      expect(page).to have_content(location_1.created_at)
-      expect(page).to have_content(location_2.created_at)
-      expect(page).to have_content(location_3.created_at)
+      within '#locations' do
+        expect(page.all('.location')[0]).to have_content('Great Barrier Reef')
+        expect(page.all('.location')[1]).to have_content(location_2.title)
+        expect(page.all('.location')[2]).to have_content(location_1.title)
+      end
     end
   end
 
