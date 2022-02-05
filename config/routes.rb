@@ -13,3 +13,6 @@ Rails.application.routes.draw do
   get '/players', to: 'players#index'
   get '/teams/:id/players', to: 'teams_players#index'
 end
+
+## AS WE BUILD PAGES - ADD LINKS TO BOTH CHILD INDEXES
+## AS WE BUILD PAGES - ADD LINKS TO BOTH PARENT INDEXES
