@@ -1,8 +1,5 @@
 <h1>All Players</h1>
-<a href='/dive'>See All Dives</a>
-<a href='/locations'>See All Locations</a>
-<a href='/teams'>See All Teams</a>
-<a href='/player'>See All Players</a>
+
 <% @players.each do |player| %>
   <h3><%= player.name%></h3>
   <p>Player is healthy?: <%= player.healthy %></p>
