@@ -30,7 +30,7 @@ RSpec.describe 'dive_locations page', type: :feature do
     dive_2 = Dive.create!(title: "Sorensons Shore", location_id: location_1.id, beginner: false, max_depth:65, current_strength: "Moderate", charter_loc: "Cozumel, MX")
 
     visit "/locations/#{location_1.id}"
-    save_and_open_page
+    
     expect(current_path).to eq("/locations/#{location_1.id}")
     expect(page).to have_content("See All #{location_1.title} Dives")
     click_link "See All #{location_1.title} Dives"

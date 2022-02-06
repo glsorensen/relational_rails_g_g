@@ -79,7 +79,6 @@ RSpec.describe "Team index page", type: :feature do
       click_link "Create New Team"
       expect(current_path).to eq("/teams/new")
       fill_in "Name", with: "Kings"
-      save_and_open_page
       find('#in_playoffs', :text => 'false').click
       fill_in("Total wins", with: 40)
       # fill_in :placeholder => 'Total Wins', with: '40', visible: false

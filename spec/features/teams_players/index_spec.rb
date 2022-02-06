@@ -6,7 +6,7 @@ RSpec.describe "Team and Player index" do
     player_2 = Player.create!(healthy: true, weight_lbs: 230, name: "Rob Blake", hometown: "Edmonton, AB" , team_id: team_1.id)
 
     visit "teams/#{team_1.id}/players"
-    save_and_open_page
+  
     expect(current_path).to eq("/teams/#{team_1.id}/players")
     expect(page).to have_content(team_1.name)
     expect(page).to have_content(player_1.weight_lbs)
