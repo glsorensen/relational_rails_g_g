@@ -9,7 +9,7 @@ class LocationsController < ApplicationController
   end
 
   def new
-
+    @location = Location.new
   end
 
   def create
@@ -23,7 +23,7 @@ class LocationsController < ApplicationController
       region: params[:location][:region],
       water_temp: params[:location][:water_temp]
       })
-    task.save
+    location.save
     redirect_to '/locations'
   end
 end

@@ -30,4 +30,23 @@ RSpec.describe 'locations index page', type: :feature do
       end
     end
   end
+
+  describe 'create new location link' do
+    it 'has a link to new location' do
+      location_1 = Location.create!(title: 'Key Largo', created_at: "04-02-1989")
+      visit '/locations'
+      expect(current_path).to eq('/locations')
+      click_on "Create New Location"
+      expect(current_path).to eq('/locations/new')
+      save_and_open_page
+      fill_in "Title", with: "Cozumel, MX"
+      find('#has_reefs', :text => 'false').click
+      fill_in "Num of species", with: "1700"
+      fill_in "Peak season", with: "Year round"
+      fill_in "Region", with: "Carribean"
+      fill_in "Water temp", with: "62F - 85F"
+      fill_in "Description", with: "Tacos & Dives!"
+      click_on "Create Location"
+    end
+  end
 end
