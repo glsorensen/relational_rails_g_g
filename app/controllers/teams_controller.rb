@@ -9,13 +9,11 @@ class TeamsController < ApplicationController
   end
 
   def new
-
+    @team = Team.new
   end
 
   def create
-    binding.pry
     team = Team.new({
-      title: params[:team][:title],
       in_playoffs: params[:team][:in_playoffs],
       total_wins: params[:team][:total_wins],
       name: params[:team][:name],

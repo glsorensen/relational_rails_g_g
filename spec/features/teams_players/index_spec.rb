@@ -19,4 +19,5 @@ RSpec.describe "Team and Player index" do
     expect(page).to have_content(player_2.healthy)
   end
 
+
 end

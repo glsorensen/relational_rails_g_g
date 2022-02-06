@@ -60,16 +60,31 @@ RSpec.describe "Team index page", type: :feature do
 
     visit "/teams"
     # binding.pry
-    save_and_open_page
+
     expect(current_path).to eq('/teams')
     within "#teams" do
       expect(page.all('.team')[0]).to have_content("Avalanche")
       expect(page.all('.team')[1]).to have_content("Red Wings")
     end
 
-   #expected_array = [ 'Avalanche', 'Red Wings' ]
-    #
-    # page.all.map(&:text).should eq(expected_array)
+  end
 
+  describe "create new location link" do
+    it 'has a link new team' do
+
+      visit "/teams"
+
+      expect(current_path).to eq("/teams")
+      expect(page).to have_content("Create New Team")
+      click_link "Create New Team"
+      expect(current_path).to eq("/teams/new")
+      fill_in "Name", with: "Kings"
+      save_and_open_page
+      find('#in_playoffs', :text => 'false').click
+      fill_in "total_wins", with: 40
+      fill_in "City", with: "Los Angeles"
+      fill_in "home_arena", with: "Staples Center"
+      click_on "Save"
+    end
   end
 end
