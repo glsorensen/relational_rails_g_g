@@ -1,5 +1,5 @@
 <h1>All Players</h1>
-
+<%= link_to "New Player: #{team.name}", "/teams/#{team.id}/players.new" %>
 <% @players.each do |player| %>
   <h3><%= player.name%></h3>
   <p>Player is healthy?: <%= player.healthy %></p>

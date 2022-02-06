@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get '/players', to: 'players#index'
   get '/players/:id', to: 'players#show'
   get '/teams/:id/players', to: 'teams_players#index'
+  get '/teams/:id/players/new', to: 'teams_players#new'
+  post 'teams/:id/players', to: 'teams_players#create'
 end
 
 ## AS WE BUILD PAGES - ADD TESTS FOR LINKS TO BOTH CHILD INDEXES
