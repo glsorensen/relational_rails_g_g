@@ -1,0 +1,44 @@
+
+<h1>Edit Location - <%= @location.title %></h1>
+
+<%= form_with(url: "/locations/#{@location.id}", method: "patch", local: true) do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <div id = "has_reefs">
+    <%= f.label :has_reefs %><br>
+    <%= f.select :remote, options_for_select([true, false]), class: 'true_false' %><br>
+  </div>
+
+  <p>
+    <%= f.label :num_of_species %><br>
+    <%= f.number_field :num_of_species %>
+  </p>
+
+  <p>
+    <%= f.label :peak_season %><br>
+    <%= f.text_field :peak_season %>
+  </p>
+
+  <p>
+    <%= f.label :region %><br>
+    <%= f.text_field :region %>
+  </p>
+
+  <p>
+    <%= f.label :water_temp %><br>
+    <%= f.text_field :water_temp %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+
+  <p>
+    <%= f.submit "Update #{@location.title}"%>
+  </p>
+
+<% end %>

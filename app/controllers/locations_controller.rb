@@ -12,6 +12,10 @@ class LocationsController < ApplicationController
     @location = Location.new
   end
 
+  def edit
+    @location = Location.find(params[:id])
+  end
+
   def create
     location = Location.new({
       title: params[:location][:title],
@@ -26,4 +30,20 @@ class LocationsController < ApplicationController
     location.save
     redirect_to '/locations'
   end
+
+  def update
+    @location = Location.find(params[:id])
+    if @location.update(location_params)
+      @location.save
+      redirect_to "/locations/#{@location.id}"
+    else
+      render 'edit'
+    end
+  end
+
+  private
+    def location_params
+      params.permit(:title, :has_reefs, :num_of_species, :peak_season,
+                    :region, :water_temp,:description)
+    end
 end
