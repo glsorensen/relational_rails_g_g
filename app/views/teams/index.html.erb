@@ -6,6 +6,8 @@
     <div class= "team">
       <h3><%=team.name%></h3>
       <p>Created at: <%= team.created_at %></p>
+    
+       <p><%= link_to "Update: #{team.name}", "/teams/#{team.id}/edit" %></p>
     </div>
   <% end %>
 </div>
