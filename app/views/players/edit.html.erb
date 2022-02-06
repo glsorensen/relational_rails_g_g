@@ -1,0 +1,22 @@
+
+  <p>Edit  Player:</p>
+    <%= form_with url: "/players/#{@player.id}", method: :post, local: true do |form| %>
+
+      <%= form.label :name %>
+      <%= form.text_field :name %><br>
+
+
+    <div id = "Healthy">
+
+      <%= form.label :healthy %>
+      <%= form.select :remote, options_for_select([true, false]), class: 'form-control' %><br>
+    </div>
+
+      <%= form.label :weight_lbs %>
+      <%= form.number_field :weight_lbs %><br>
+
+      <%= form.label :hometown %>
+      <%= form.text_field :hometown %><br>
+
+      <%= form.submit "Update Player"%>
+    <% end %>
