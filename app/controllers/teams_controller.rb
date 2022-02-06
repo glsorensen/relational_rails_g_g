@@ -18,9 +18,9 @@ class TeamsController < ApplicationController
       total_wins: params[:team][:total_wins],
       name: params[:team][:name],
       city: params[:team][:city],
-      mascot: params[:team][:mascot]
+      home_arena: params[:team][:home_arena]
       })
-    task.save
+    team.save
     redirect_to '/teams'
   end
 end

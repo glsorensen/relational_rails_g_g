@@ -1,9 +1,10 @@
 
 
-<form action="/locations" method="post">
+<form action="/teams" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <p>Enter a new Team:</p>
     <%= form_with model: @team, class: "team_form" do |f| %>
+
       <%= f.label :name %>
       <%= f.text_field :name %><br>
 

@@ -81,10 +81,11 @@ RSpec.describe "Team index page", type: :feature do
       fill_in "Name", with: "Kings"
       save_and_open_page
       find('#in_playoffs', :text => 'false').click
-      fill_in "total_wins", with: 40
+      fill_in("Total wins", with: 40)
+      # fill_in :placeholder => 'Total Wins', with: '40', visible: false
       fill_in "City", with: "Los Angeles"
-      fill_in "home_arena", with: "Staples Center"
-      click_on "Save"
+      fill_in "Home arena", with: "Staples Center"
+      click_on "Create Team"
     end
   end
 end
