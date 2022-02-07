@@ -1,0 +1,38 @@
+<h1>Edit Location - <%= @dive.title %></h1>
+
+<%= form_with(url: "/dive/#{@dive.id}", method: "patch", local: true) do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <div id = "beginner_select">
+    <%= f.label :beginner %><br>
+    <%= f.select :beginner, [['True', true], ['False', false]] %><br>
+  </div>
+
+  <p>
+    <%= f.label :max_depth %><br>
+    <%= f.number_field :max_depth %>
+  </p>
+
+  <div id = "current_strength_select">
+    <%= f.label "Strength of Current" %><br>
+    <%= f.select :current_strength, [['Mild', 'mild'], ['Moderate', 'moderate'], ['Severe', 'severe']] %><br>
+  </div>
+
+  <p>
+    <%= f.label :region %><br>
+    <%= f.text_field :region %>
+  </p>
+
+  <p>
+    <%= f.label :charter_loc %><br>
+    <%= f.text_field :charter_loc %>
+  </p>
+
+  <p>
+    <%= f.submit "Update #{@dive.title}"%>
+  </p>
+
+<% end %>
