@@ -38,7 +38,6 @@ RSpec.describe 'locations index page', type: :feature do
       expect(current_path).to eq('/locations')
       click_on "Create New Location"
       expect(current_path).to eq('/locations/new')
-      save_and_open_page
       fill_in "Title", with: "Cozumel, MX"
       find('#has_reefs', :text => 'false').click
       fill_in "Num of species", with: "1700"
@@ -47,6 +46,43 @@ RSpec.describe 'locations index page', type: :feature do
       fill_in "Water temp", with: "62F - 85F"
       fill_in "Description", with: "Tacos & Dives!"
       click_on "Create Location"
+    end
+
+    describe 'Location update from Location Index Page - U17' do
+      before (:each) do
+        @location_1 = Location.create!(title: 'Key Largo', has_reefs: true, num_of_species: 600, peak_season: 'June - October', region: "North America", water_temp: "72F - 86F", description: "Great place")
+        @location_2 = Location.create!(title: 'San Diego', has_reefs: false, num_of_species: 250, peak_season: 'April - September', region: "North America", water_temp: "50F - 62F", description: "NAVY SEALS")
+        @location_3 = Location.create!(title: 'Great Barrier Reef', has_reefs: true, num_of_species: 2500, peak_season: 'Year round', region: "Australia", water_temp: "62F - 86F", description: "Famous")
+      end
+
+      it 'I visit parent index page, and see a link to edit parent' do
+        visit('/locations')
+        expect(current_path).to eq('/locations')
+        expect(page).to have_link("Edit #{@location_1.title}")
+        expect(page).to have_link("Edit #{@location_2.title}")
+        expect(page).to have_link("Edit #{@location_3.title}")
+      end
+
+      it 'I click link and am taken to parent edit page' do
+        visit('/locations')
+        expect(current_path).to eq('/locations')
+        expect(page).to have_content("Key Largo")
+        expect(page).to_not have_content("Key West")
+        click_on "Edit #{@location_1.title}"
+        expect(current_path).to eq("/locations/#{@location_1.id}/edit")
+      end
+
+      it 'allows me to edit parent like U4' do
+        visit("locations/#{@location_1.id}/edit")
+        fill_in "Title", :with => 'Key West'
+        click_on "Update #{@location_1.title}"
+        visit('/locations')
+        expect(current_path).to eq('/locations')
+        save_and_open_page
+        expect(page).to have_link("Edit Key West")
+        expect(page).to have_content("Key West")
+        expect(page).to_not have_content("Key Largo")
+      end
     end
   end
 end

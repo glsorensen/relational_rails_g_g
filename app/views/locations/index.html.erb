@@ -3,8 +3,9 @@
 <div id = "locations">
   <% @locations.each_with_index do |location, index| %>
     <div class="location">
-      <p><%= location.title %></p>
+      <h3><%= location.title %></h3>
       <p>Created at: <%= location.created_at %></p>
+      <%= link_to "Edit #{location.title}", "locations/#{location.id}/edit" %>
     </div>
   <% end %>
 </div>
