@@ -1,6 +1,7 @@
 class DivesController < ApplicationController
   def index
-    @dives = Dive.all
+    #@dives = Dive.all
+    @dives = Dive.true_beginners
   end
 
   def show

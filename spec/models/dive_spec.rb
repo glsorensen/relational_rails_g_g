@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Dive, type: :model do
   it {should belong_to :location}
+  it {should }
   before (:each) do
     @san_diego = Location.create!(title: 'San Diego', has_reefs: false, num_of_species: 250, peak_season: 'April - September', region: "North America", water_temp: "50F - 62F", description: "Home of the NAVY SEALS")
     @navy_port = @san_diego.dives.create!(title: "Navy Port", beginner: false, max_depth:90, current_strength: "Strong", charter_loc: "Coronado Island, San Diego")
@@ -13,7 +14,7 @@ RSpec.describe Dive, type: :model do
       results = [@la_jolla, @navy_port, @oceanside]
       expect(Dive.alphabetical).to eq(results)
     end
-  end 
+  end
 
   describe 'only true beginners' do
     it 'collects only true beginners' do

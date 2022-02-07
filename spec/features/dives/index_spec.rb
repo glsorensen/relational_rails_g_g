@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'dives index page', type: :feature do
   it 'shows each dive and their attributes' do
     location_1 = Location.create!(title: 'Key Largo', has_reefs: true, num_of_species: 600, peak_season: 'June - October', region: "North America", water_temp: "72F - 86F", description: "Great place")
-    dive_1 = Dive.create!(title: "Flahertys Cave", location_id: location_1.id, beginner: false, max_depth:45, current_strength: "Strong", charter_loc: "Cozumel, MX")
+    dive_1 = Dive.create!(title: "Flahertys Cave", location_id: location_1.id, beginner: true, max_depth:45, current_strength: "Strong", charter_loc: "Cozumel, MX")
 
     visit '/dive'
     expect(current_path).to eq("/dive")
@@ -39,9 +39,9 @@ RSpec.describe 'dives index page', type: :feature do
     it 'visits child index page and only sees true beginners' do
       visit '/dive'
       expect(current_path).to eq("/dive")
-      expect(page).to has_no_content(@navy_port.title)
-      expect(page).to has_no_content(@navy_port.location_id)
-      expect(page).to has_no_content(@navy_port.beginner)
+      save_and_open_page
+      expect(page).to_not have_content(@navy_port.title)
+      expect(page).to_not have_content(@navy_port.beginner)
     end
   end
 end
