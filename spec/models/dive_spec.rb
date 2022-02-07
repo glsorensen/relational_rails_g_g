@@ -13,5 +13,12 @@ RSpec.describe Dive, type: :model do
       results = [@la_jolla, @navy_port, @oceanside]
       expect(Dive.alphabetical).to eq(results)
     end
+  end 
+
+  describe 'only true beginners' do
+    it 'collects only true beginners' do
+      results = [@la_jolla, @oceanside]
+      expect(Dive.true_beginners).to eq(results)
+    end
   end
 end

@@ -4,4 +4,8 @@ class Dive < ApplicationRecord
   def self.alphabetical
     order(:title)
   end
+
+  def self.true_beginners
+    where(beginner: :true)
+  end
 end
