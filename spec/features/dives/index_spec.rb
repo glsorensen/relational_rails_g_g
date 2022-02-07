@@ -16,4 +16,32 @@ RSpec.describe 'dives index page', type: :feature do
     expect(page).to have_content(dive_1.created_at)
     expect(page).to have_content(dive_1.updated_at)
   end
+
+  describe 'it shows only true records' do
+    before (:each) do
+      @san_diego = Location.create!(title: 'San Diego', has_reefs: false, num_of_species: 250, peak_season: 'April - September', region: "North America", water_temp: "50F - 62F", description: "Home of the NAVY SEALS")
+      @navy_port = @san_diego.dives.create!(title: "Navy Port", beginner: false, max_depth:90, current_strength: "Strong", charter_loc: "Coronado Island, San Diego")
+      @la_jolla = @san_diego.dives.create!(title: "La Jolla Cove", beginner: true, max_depth:45, current_strength: "Mild", charter_loc: "La Jolla, San Diego")
+      @oceanside = @san_diego.dives.create!(title: "Ocienside Pier", beginner: true, max_depth:25, current_strength: "Mild", charter_loc: "Oceanside, San Diego")
+    end
+
+    it 'visits child index page and only sees true beginners' do
+      visit '/dive'
+      expect(current_path).to eq("/dive")
+      expect(page).to have_content(@la_jolla.title)
+      expect(page).to have_content(@la_jolla.location_id)
+      expect(page).to have_content(@la_jolla.beginner)
+      expect(page).to have_content(@oceanside.title)
+      expect(page).to have_content(@oceanside.location_id)
+      expect(page).to have_content(@oceanside.beginner)
+    end
+
+    it 'visits child index page and only sees true beginners' do
+      visit '/dive'
+      expect(current_path).to eq("/dive")
+      expect(page).to has_no_content(@navy_port.title)
+      expect(page).to has_no_content(@navy_port.location_id)
+      expect(page).to has_no_content(@navy_port.beginner)
+    end
+  end
 end
