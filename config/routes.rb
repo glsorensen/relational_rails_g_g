@@ -10,8 +10,13 @@ Rails.application.routes.draw do
 
 
   get '/locations/:id/dives', to: 'locations_dives#show'
+  get "/locations/:id/dives/new", to: 'locations_dives#new'
+  post '/locations/:id/dives', to: 'locations_dives#create'
+
   get '/dive', to: 'dives#index'
   get '/dive/:id', to: 'dives#show'
+  get '/dive/:id/edit', to: 'dives#edit'
+  patch '/dive/:id', to: 'dives#update'
 
 
   get '/teams', to: 'teams#index'
