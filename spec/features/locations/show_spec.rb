@@ -14,6 +14,7 @@ RSpec.describe 'locations show page', type: :feature do
     expect(page).to have_content(location_1.region)
     expect(page).to have_content(location_1.water_temp)
     expect(page).to have_content(location_1.description)
+
   end
 
   it 'shows count of dives on location show page' do
@@ -33,7 +34,6 @@ RSpec.describe 'locations show page', type: :feature do
     visit "/locations/#{location_1.id}"
     expect(current_path).to eq("/locations/#{location_1.id}")
     click_on "Update #{location_1.title}"
-    save_and_open_page
     expect(current_path).to eq("/locations/#{location_1.id}/edit")
     fill_in "Title", :with => 'Fiji'
     find('#has_reefs', :text => 'false').click
@@ -44,6 +44,8 @@ RSpec.describe 'locations show page', type: :feature do
     fill_in "Description", with: "Tacos & Dives!"
     click_button "Update #{location_1.title}"
     expect(current_path).to eq("/locations/#{location_1.id}")
+    save_and_open_page
     expect(page).to have_content("Fiji")
+
   end
 end

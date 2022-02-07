@@ -1,12 +1,18 @@
 
 <h1><%= @location.title  %></h1>
 
-<% @dives.each do |dive| %>
-<h3><%= dive.title %></h3><br>
-<p>Beginner dive: <%= dive.beginner %></p><br>
-<p>Max depth: <%= dive.max_depth %></p><br>
-<p>Strength of current: <%= dive.current_strength %></p><br>
-<p>Location of charter: <%= dive.charter_loc %></p><br>
-<p>Created at: <%= dive.created_at %></p><br>
-<p>Updated at: <%= dive.updated_at %></p>
-<% end %>
+<a href="/locations/<%=@location.id%>/dives/new">Create New Dive</a>
+<p><%= link_to "Sort Dives: A-Z", "/locations/#{@location.id}/dives?az=true" %></p>
+<div id = "dives">
+  <% @dives.each do |dive| %>
+    <div class="dive">
+    <h3><%= dive.title %></h3><br>
+    <p>Beginner dive: <%= dive.beginner %></p><br>
+    <p>Max depth: <%= dive.max_depth %></p><br>
+    <p>Strength of current: <%= dive.current_strength %></p><br>
+    <p>Location of charter: <%= dive.charter_loc %></p><br>
+    <p>Created at: <%= dive.created_at %></p><br>
+    <p>Updated at: <%= dive.updated_at %></p>
+    <\div>
+  <% end %>
+<\div>
