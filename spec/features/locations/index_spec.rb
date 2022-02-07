@@ -78,7 +78,6 @@ RSpec.describe 'locations index page', type: :feature do
         click_on "Update #{@location_1.title}"
         visit('/locations')
         expect(current_path).to eq('/locations')
-        save_and_open_page
         expect(page).to have_link("Edit Key West")
         expect(page).to have_content("Key West")
         expect(page).to_not have_content("Key Largo")

@@ -13,6 +13,7 @@
     <p>Location of charter: <%= dive.charter_loc %></p><br>
     <p>Created at: <%= dive.created_at %></p><br>
     <p>Updated at: <%= dive.updated_at %></p>
-    <\div>
+    <%= link_to "Edit #{dive.title}", "/dive/#{dive.id}/edit" %>
+    </div>
   <% end %>
-<\div>
+</div>
