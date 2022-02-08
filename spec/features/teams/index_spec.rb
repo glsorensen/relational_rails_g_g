@@ -62,7 +62,6 @@ RSpec.describe "Team index page", type: :feature do
     # binding.pry
 
     expect(current_path).to eq('/teams')
-    save_and_open_page
     within "#teams" do
       expect(page.all('.team')[0]).to have_content("Avalanche")
       expect(page.all('.team')[1]).to have_content("Red Wings")
@@ -106,6 +105,7 @@ RSpec.describe "Team index page", type: :feature do
       fill_in "Home arena", with: "Staples Center"
       click_on "Update Team"
       expect(current_path).to eq("/teams/#{team_11.id}")
+      save_and_open_page
     end
 
   end

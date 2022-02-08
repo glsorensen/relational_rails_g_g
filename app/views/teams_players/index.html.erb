@@ -12,6 +12,7 @@
       <p>Player Hometown: <%= player.hometown %></p>
       <p>Created at: <%= player.created_at %></p>
       <p>Updated at: <%= player.updated_at %></p>
+      <p><%= link_to "Update: #{player.name}", "/players/#{player.id}/edit" %></p>
       </div>
   <% end %>
 </div>
