@@ -22,6 +22,12 @@ class DivesController < ApplicationController
     end
   end
 
+  def destroy
+    @dive = Dive.find(params[:id])
+    @dive.destroy
+    redirect_to '/dive'
+  end
+
   private
     def dive_params
       params.permit(:title, :beginner, :max_depth,

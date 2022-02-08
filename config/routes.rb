@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/dive/:id', to: 'dives#show'
   get '/dive/:id/edit', to: 'dives#edit'
   patch '/dive/:id', to: 'dives#update'
+  delete '/dive/:id', to: 'dives#destroy'
 
 
   get '/teams', to: 'teams#index'
