@@ -1,6 +1,4 @@
 <h1><%=@dive.title%></h1>
-<a href="/dive/<%=@dive.id%>/edit">Update
-  <%=@dive.title%></a>
 <p>Location ID:
   <%= @dive.location_id %></p>
 <p>Beginner dives welcome:
@@ -15,4 +13,6 @@
   <%= @dive.created_at %></p>
 <p>Updated at:
   <%= @dive.updated_at %></p>
+<a href="/dive/<%=@dive.id%>/edit">Update
+  <%=@dive.title%></a>
 <%= link_to "Delete #{@dive.title}", "/dive/#{@dive.id}", method: :delete %>
