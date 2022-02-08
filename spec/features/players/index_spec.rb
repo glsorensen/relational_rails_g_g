@@ -53,7 +53,6 @@ require 'rails_helper'
       it 'allows me to edit child like U11' do
         visit("/players/#{@player_3.id}/edit")
         expect(current_path).to eq("/players/#{@player_3.id}/edit")
-        save_and_open_page
         fill_in "Name", :with => 'Test Player'
         click_on "Update Player"
         visit('/players')

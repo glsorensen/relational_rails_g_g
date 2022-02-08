@@ -9,7 +9,6 @@ RSpec.describe "Team show page", type: :feature do
 
       visit "/teams/#{team_1.id}"
       expect(current_path).to eq("/teams/#{team_1.id}")
-      save_and_open_page
       expect(page).to have_content("Number of players = 3")
     end
 
