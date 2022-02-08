@@ -2,7 +2,7 @@ class LocationsDivesController < ApplicationController
   def show
     if params[:az] == 'true'
       @location = Location.find(params[:id])
-      @dives = Dive.alphabetical
+      @dives = @location.dives.alphabetical
     else
       @location = Location.find(params[:id])
       @dives = @location.dives
