@@ -55,15 +55,18 @@ RSpec.describe "Team and Player index" do
 
     it "I click link and am taken back to page where players are sorted A-Z - '/teams/:id/players'" do
       visit("/teams/#{@team_2.id}/players")
+      # save_and_open_page
       click_link "Sort A-Z"
       expect(current_path).to eq("/teams/#{@team_2.id}/players")
-      save_and_open_page
-    
-      within '#players' do
+
+      within "#players" do
+        # expect(page.find('li:nth-child(1)')).to have_content("Chris Osgood")
+        # expect(page.find('li:nth-child(2)')).to have_content("Nick Lidstrom")
+        # expect(page.find('li:nth-child(3)')).to have_content("Steve Yzerman")
         expect(page.all('.player')[0]).to have_content("Chris Osgood")
         expect(page.all('.player')[1]).to have_content("Nick Lidstrom")
         expect(page.all('.player')[2]).to have_content("Steve Yzerman")
-      end
+       end
     end
   end
 
