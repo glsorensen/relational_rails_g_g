@@ -1,11 +1,18 @@
 
 <h1><%= @team.name %></h1>
+<p><%= link_to "Add New Player", "/teams/#{@team.id}/players/new" %></p>
+<p><%= link_to "Sort A-Z", "/teams/#{@team.id}/players?sort=asc" %></p>
 
-<% @players.each do |player| %>
-  <h3><%= player.name%></h3>
-  <p>Player is healthy?: <%= player.healthy %></p>
-  <p>Current weight in pounds: <%= player.weight_lbs %></p>
-  <p>Player Hometown: <%= player.hometown %></p>
-  <p>Created at: <%= player.created_at %></p>
-  <p>Updated at: <%= player.updated_at %></p>
-<% end %>
+<div id = "players">
+  <% @players.each do |player| %>
+     <div class="player">
+      <h3><%= player.name%></h3>
+      <p>Player is healthy?: <%= player.healthy %></p>
+      <p>Current weight in pounds: <%= player.weight_lbs %></p>
+      <p>Player Hometown: <%= player.hometown %></p>
+      <p>Created at: <%= player.created_at %></p>
+      <p>Updated at: <%= player.updated_at %></p>
+      <p><%= link_to "Update: #{player.name}", "/players/#{player.id}/edit" %></p>
+      </div>
+  <% end %>
+</div>

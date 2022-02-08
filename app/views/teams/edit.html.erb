@@ -1,0 +1,27 @@
+<h1>Edit Team</h1>
+
+  <%= form_with url: "/teams/#{@team.id}", method: :patch, local: true do |form|  %>
+
+    <%= form.label :name %>
+    <%= form.text_field :name %><br>
+
+
+  <div id = "in_playoffs">
+
+    <%= form.label :in_playoffs %>
+    <%= form.select :remote, options_for_select([true, false]), class: 'form-control' %><br>
+  </div>
+
+    <%= form.label :total_wins %>
+    <%= form.number_field :total_wins %><br>
+
+    <%= form.label :city %>
+    <%= form.text_field :city %><br>
+
+    <%= form.label :home_arena %>
+    <%= form.text_field :home_arena %><br>
+
+    <%= form.submit "Update Team" %>
+  <% end %>
+
+  <%= link_to "Back", teams_path %>
