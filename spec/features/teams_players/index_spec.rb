@@ -26,7 +26,7 @@ RSpec.describe "Team and Player index" do
     visit "teams/#{team_1.id}/players"
 
     expect(current_path).to eq("/teams/#{team_1.id}/players")
-    click_link "Add New Player: #{team_1.name}"
+    click_link "Add New Player"
     expect(current_path).to eq("/teams/#{team_1.id}/players/new")
     fill_in "Name", with: "GOldberg"
     find('#healthy').click
@@ -35,6 +35,36 @@ RSpec.describe "Team and Player index" do
     fill_in "Hometown", with: "Los Angeles"
     click_on "Create Player"
     expect(current_path).to eq("/teams/#{team_1.id}/players")
+  end
+
+  describe 'sorts players by alphabetical order' do
+    before (:each) do
+      @team_2 = Team.create!(in_playoffs: false, total_wins: 27, name: "Red Wings", city: "Detroit", home_arena: "Little Ceasers Arena")
+      @player_1 = @team_2.players.create!(healthy: true, weight_lbs: 220, name: "Nick Lidstrom", hometown: "Stockholm, SWE")
+      @player_2 = @team_2.players.create!(healthy: true, weight_lbs: 180, name: "Chris Osgood", hometown: "Davos, CH" )
+      @player_3 = @team_2.players.create!(healthy: false, weight_lbs: 196, name: "Steve Yzerman", hometown: "Cranbrook, CAN")
+    end
+
+    it "I see a link to sort A-Z on page - '/teams/:id/players'" do
+      visit("/teams/#{@team_2.id}/players")
+      expect(current_path).to eq("/teams/#{@team_2.id}/players")
+      expect(page).to have_link("Sort A-Z")
+      click_link "Sort A-Z"
+      expect(current_path).to eq("/teams/#{@team_2.id}/players")
+    end
+
+    it "I click link and am taken back to page where players are sorted A-Z - '/teams/:id/players'" do
+      visit("/teams/#{@team_2.id}/players")
+      click_link "Sort A-Z"
+      expect(current_path).to eq("/teams/#{@team_2.id}/players")
+      save_and_open_page
+    
+      within '#players' do
+        expect(page.all('.player')[0]).to have_content("Chris Osgood")
+        expect(page.all('.player')[1]).to have_content("Nick Lidstrom")
+        expect(page.all('.player')[2]).to have_content("Steve Yzerman")
+      end
+    end
   end
 
 

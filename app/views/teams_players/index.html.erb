@@ -1,6 +1,8 @@
 
 <h1><%= @team.name %></h1>
-<%= link_to "Add New Player: #{@team.name}", "/teams/#{@team.id}/players/new" %>
+<p><%= link_to "Add New Player", "/teams/#{@team.id}/players/new" %></p>
+<p><%= link_to "Sort A-Z", "/teams/#{@team.id}/players?sort=asc" %></p>
+
 <% @players.each do |player| %>
   <h3><%= player.name%></h3>
   <p>Player is healthy?: <%= player.healthy %></p>

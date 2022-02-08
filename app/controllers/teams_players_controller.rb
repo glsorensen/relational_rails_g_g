@@ -5,7 +5,11 @@ class TeamsPlayersController < ApplicationController
 
   def index
     @team = Team.find(params[:id])
-    @players = Player.where(team_id: @team.id)
+      if params[:sort]
+        @players = @team.sort_a_z
+      else
+        @players = Player.where(team_id: @team.id)
+      end
   end
 
   def new

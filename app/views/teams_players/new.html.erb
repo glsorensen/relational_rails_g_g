@@ -7,10 +7,11 @@
     <%= form.label :weight_lbs %>
     <%= form.number_field :weight_lbs %>
   </p>
-  <p>
+  <div id = "Healthy">
+
     <%= form.label :healthy %>
-    <%= form.check_box :healthy %>
-  </p>
+    <%= form.select :healthy, [['True', true], ['False', false]]%><br>
+  </div>
   <p>
     <%= form.label :hometown %>
     <%= form.text_field :hometown %>

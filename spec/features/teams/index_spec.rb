@@ -62,6 +62,7 @@ RSpec.describe "Team index page", type: :feature do
     # binding.pry
 
     expect(current_path).to eq('/teams')
+    save_and_open_page
     within "#teams" do
       expect(page.all('.team')[0]).to have_content("Avalanche")
       expect(page.all('.team')[1]).to have_content("Red Wings")
@@ -89,22 +90,22 @@ RSpec.describe "Team index page", type: :feature do
 
     it "has a working link to update the team" do
 
-      team_1 = Team.create!(in_playoffs: true, total_wins: 43, name: "Avalanche", city: "Colorado", home_arena: "Ball Arena")
-      team_2 = Team.create!(in_playoffs: false, total_wins: 27, name: "Red Wings", city: "Detroit", home_arena: "Little Ceasers Arena")
+      team_11 = Team.create!(in_playoffs: true, total_wins: 43, name: "Oranges", city: "Colorado", home_arena: "Ball Arena")
+
 
       visit "/teams"
 
       expect(current_path).to eq("/teams")
-      click_link "Update: #{team_1.name}"
-      expect(current_path).to eq("/teams/#{team_1.id}/edit")
-      fill_in "Name", with: "Kings"
+      click_link "Update:" , match: :first
+      expect(current_path).to eq("/teams/#{team_11.id}/edit")
+      fill_in "Name", with: "Blues"
       find('#in_playoffs', :text => 'false').click
       fill_in("Total wins", with: 40)
       # fill_in :placeholder => 'Total Wins', with: '40', visible: false
       fill_in "City", with: "Los Angeles"
       fill_in "Home arena", with: "Staples Center"
       click_on "Update Team"
-      expect(current_path).to eq("/teams/#{team_1.id}")
+      expect(current_path).to eq("/teams/#{team_11.id}")
     end
 
   end

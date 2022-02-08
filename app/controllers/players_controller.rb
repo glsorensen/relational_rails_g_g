@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
   end
 
   def index
-    @players = Player.all
+    @players = Player.all.healthy?
   end
 
   def edit

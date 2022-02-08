@@ -1,6 +1,6 @@
 
   <p>Edit  Player:</p>
-    <%= form_with url: "/players/#{@player.id}", method: :post, local: true do |form| %>
+    <%= form_with(url: "/players/#{@player.id}", method: :patch, local: true) do |form| %>
 
       <%= form.label :name %>
       <%= form.text_field :name %><br>
@@ -9,7 +9,7 @@
     <div id = "Healthy">
 
       <%= form.label :healthy %>
-      <%= form.select :remote, options_for_select([true, false]), class: 'form-control' %><br>
+      <%= form.select :healthy, [['True', true], ['False', false]]%><br>
     </div>
 
       <%= form.label :weight_lbs %>
