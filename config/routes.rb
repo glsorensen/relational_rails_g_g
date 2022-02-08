@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/locations/:id', to: 'locations#show'
   get '/locations/:id/edit', to: 'locations#edit'
   patch '/locations/:id', to: 'locations#update'
+  delete '/locations/:id', to: 'locations#destroy'
 
 
   get '/locations/:id/dives', to: 'locations_dives#show'
