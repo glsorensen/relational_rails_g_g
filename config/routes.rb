@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get '/teams/:id/edit', to: 'teams#edit'
   get '/teams/:id', to: 'teams#show'
   patch '/teams/:id', to: 'teams#update'
+  delete '/teams/:id', to: 'teams#destroy'
   post '/teams/new', to: 'teams#create'
 
 

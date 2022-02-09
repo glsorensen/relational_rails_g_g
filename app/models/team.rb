@@ -1,6 +1,6 @@
 class Team < ApplicationRecord
 
-  has_many :players
+  has_many :players, dependent: :destroy
   validates_presence_of :name
 
   def self.order_by_created_first
