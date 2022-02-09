@@ -99,6 +99,30 @@ RSpec.describe 'dives index page', type: :feature do
         click_on "Edit #{@oceanside.title}"
         expect(current_path).to eq("/dive/#{@oceanside.id}/edit")
       end
+
+      describe 'delete from child index - U23' do
+        before(:each) do
+          @key_largo = Location.create!(title: 'Key Largo', has_reefs: true, num_of_species: 600, peak_season: 'June - October', region: "Carribean", water_temp: "72F - 86F", description: "Great place & warm weather!")
+          flahertys_cave = @key_largo.dives.create!(title: "Flahertys Cave", beginner: true, max_depth:45, current_strength: "Strong", charter_loc: "Port Largo Villasm Key Largo")
+
+        end
+        it 'visits dives index and has a link to delete child' do
+          visit '/dive'
+          expect(current_path).to eq('/dive')
+          expect(page).to have_content("Flahertys Cave")
+          expect(page).to have_link("Delete Flahertys Cave")
+        end
+
+        it 'deletes child and child is no longer there' do
+          visit '/dive'
+          expect(current_path).to eq('/dive')
+          expect(page).to have_content("Flahertys Cave")
+          save_and_open_page
+          click_on "Delete Flahertys Cave"
+          expect(current_path).to eq('/dive')
+          expect(page).to_not have_content("Flahertys Cave")
+        end
+      end
     end
   end
 end

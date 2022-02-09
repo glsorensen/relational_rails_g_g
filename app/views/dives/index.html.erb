@@ -9,4 +9,5 @@
   <p>Created at: <%= dive.created_at %></p>
   <p>Updated at: <%= dive.updated_at %></p>
   <%= link_to "Edit #{dive.title}", "dive/#{dive.id}/edit" %>
+  <%= link_to "Delete #{dive.title}", "/dive/#{dive.id}", method: :delete %>
 <% end %>

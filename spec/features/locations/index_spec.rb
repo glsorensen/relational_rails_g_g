@@ -97,7 +97,7 @@ RSpec.describe 'locations index page', type: :feature do
       expect(page).to have_link("Delete #{@key_largo.title}")
     end
 
-    it 'visits locations index page and has a link to delete parent' do
+    it 'it deletes parent and parent is no longer there' do
       visit '/locations'
       expect(current_path).to eq('/locations')
       expect(page).to have_content("Key Largo")
