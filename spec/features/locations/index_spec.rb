@@ -84,4 +84,26 @@ RSpec.describe 'locations index page', type: :feature do
       end
     end
   end
+
+  describe "delete from parent index- U22" do
+    before(:each) do
+      @key_largo = Location.create!(title: 'Key Largo', has_reefs: true, num_of_species: 600, peak_season: 'June - October', region: "Carribean", water_temp: "72F - 86F", description: "Great place & warm weather!")
+    end
+
+    it 'visits locations index page and has a link to delete parent' do
+      visit '/locations'
+      expect(current_path).to eq('/locations')
+      expect(page).to have_content("Key Largo")
+      expect(page).to have_link("Delete #{@key_largo.title}")
+    end
+
+    it 'visits locations index page and has a link to delete parent' do
+      visit '/locations'
+      expect(current_path).to eq('/locations')
+      expect(page).to have_content("Key Largo")
+      click_on "Delete #{@key_largo.title}"
+      expect(current_path).to eq('/locations')
+      expect(page).to_not have_content("Key Largo")
+    end
+  end
 end

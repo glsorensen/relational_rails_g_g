@@ -6,6 +6,7 @@
       <h3><%= location.title %></h3>
       <p>Created at: <%= location.created_at %></p>
       <%= link_to "Edit #{location.title}", "locations/#{location.id}/edit" %>
+      <%= link_to "Delete #{location.title}", "/locations/#{location.id}", method: :delete %>
     </div>
   <% end %>
 </div>
