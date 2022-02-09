@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2022_02_04_135141) do
     t.string "peak_season"
     t.string "region"
     t.string "water_temp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "description"
   end
 

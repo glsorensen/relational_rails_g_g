@@ -7,3 +7,6 @@
   <h3><%= @team.city %></h3>
   <h3><%= @team.home_arena %></h3>
   <h3>Number of players = <%= @players %></h3>
+  <p><%= link_to "Delete: #{@team.name}", "/teams/#{@team.id}", method: :delete  %></p>
+  <p><%= link_to "Update: #{@team.name}", "/teams/#{@team.id}/edit"  %></p>
+  <p><%= link_to 'Return to Teams Home', teams_path %></p>

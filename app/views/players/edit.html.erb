@@ -1,0 +1,23 @@
+
+  <p>Edit  Player:</p>
+    <%= form_with(url: "/players/#{@player.id}", method: :patch, local: true) do |form| %>
+    <section id = "Name">
+      <%= form.label :name %>
+      <%= form.text_field :name %><br>
+    </section>
+
+
+    <div id = "Healthy">
+
+      <%= form.label :healthy %>
+      <%= form.select :healthy, [['True', true], ['False', false]]%><br>
+    </div>
+
+      <%= form.label :weight_lbs %>
+      <%= form.number_field :weight_lbs %><br>
+
+      <%= form.label :hometown %>
+      <%= form.text_field :hometown %><br>
+
+      <%= form.submit "Update Player"%>
+    <% end %>
