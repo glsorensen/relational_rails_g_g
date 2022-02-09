@@ -11,6 +11,14 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
   end
 
+  def destroy
+    player = Player.find(params[:id])
+    player.destroy
+
+    redirect_to "/players"
+
+  end
+
   def create
     player = Player.new({
       name: params[:player][:name],

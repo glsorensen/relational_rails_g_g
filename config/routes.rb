@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
 
   patch '/players/:id', to: 'players#update'
+  delete '/players/:id', to: 'players#destroy'
   get '/players', to: 'players#index'
   get '/players/:id', to: 'players#show'
   get '/players/:id/edit', to: 'players#edit'

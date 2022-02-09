@@ -1,7 +1,8 @@
 
 <h1><%=@player.name%></h1>
-<p>Player is healthy?: <%= @player.healthy %></p>
-<p>Current weight in pounds: <%= @player.weight_lbs %></p>
-<p>Player Hometown: <%= @player.hometown %></p>
-<p>Created at: <%= @player.created_at %></p>
-<p>Updated at: <%= @player.updated_at %></p>
+  <p>Player is healthy?: <%= @player.healthy %></p>
+  <p>Current weight in pounds: <%= @player.weight_lbs %></p>
+  <p>Player Hometown: <%= @player.hometown %></p>
+  <p>Created at: <%= @player.created_at %></p>
+  <p>Updated at: <%= @player.updated_at %></p>
+  <p><%= link_to "Delete: #{@player.name}", "/players/#{@player.id}", method: :delete  %></p>
