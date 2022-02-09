@@ -8,5 +8,6 @@
   <p>Charter location: <%= dive.charter_loc %></p>
   <p>Created at: <%= dive.created_at %></p>
   <p>Updated at: <%= dive.updated_at %></p>
-  <%= link_to "Edit #{dive.title}", "dive/#{dive.id}/edit" %>
+  <%= link_to "Edit #{dive.title}", "dives/#{dive.id}/edit" %>
+  <%= link_to "Delete #{dive.title}", "/dives/#{dive.id}", method: :delete %>
 <% end %>

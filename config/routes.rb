@@ -7,19 +7,17 @@ Rails.application.routes.draw do
   get '/locations/:id', to: 'locations#show'
   get '/locations/:id/edit', to: 'locations#edit'
   patch '/locations/:id', to: 'locations#update'
+  delete '/locations/:id', to: 'locations#destroy'
 
+  get '/dives', to: 'dives#index'
+  get '/dives/:id', to: 'dives#show'
+  get '/dives/:id/edit', to: 'dives#edit'
+  patch '/dives/:id', to: 'dives#update'
+  delete '/dives/:id', to: 'dives#destroy'
 
   get '/locations/:id/dives', to: 'locations_dives#show'
   get "/locations/:id/dives/new", to: 'locations_dives#new'
   post '/locations/:id/dives', to: 'locations_dives#create'
-
-  get '/dive', to: 'dives#index'
-  get '/dive/:id', to: 'dives#show'
-
-
-  get '/dive/:id/edit', to: 'dives#edit'
-  patch '/dive/:id', to: 'dives#update'
-
 
   get '/teams', to: 'teams#index'
   post '/teams', to: 'teams#create'

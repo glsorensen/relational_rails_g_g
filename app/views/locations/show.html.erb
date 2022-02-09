@@ -9,3 +9,4 @@
 <p>Region: <%= @location.region %></p>
 <p>Water Temperature: <%= @location.water_temp %></p>
 <a href="/locations/<%=@location.id%>/edit">Update <%=@location.title%></a>
+<%= link_to "Delete #{@location.title}", "/locations/#{@location.id}", method: :delete %>

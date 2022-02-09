@@ -49,7 +49,6 @@ RSpec.describe 'dive_locations page', type: :feature do
       visit("/locations/#{@san_diego.id}/dives")
       expect(current_path).to eq("/locations/#{@san_diego.id}/dives")
       expect(page).to have_link("Sort Dives: A-Z")
-      save_and_open_page
       click_link "Sort Dives: A-Z"
       expect(current_path).to eq("/locations/#{@san_diego.id}/dives")
     end
@@ -58,13 +57,36 @@ RSpec.describe 'dive_locations page', type: :feature do
       visit("/locations/#{@san_diego.id}/dives")
       click_link "Sort Dives: A-Z"
       expect(current_path).to eq("/locations/#{@san_diego.id}/dives")
-      save_and_open_page
 
       within '#dives' do
         expect(page.all('.dive')[0]).to have_content('La Jolla Cove')
         expect(page.all('.dive')[1]).to have_content("Navy Port")
         expect(page.all('.dive')[2]).to have_content("Ocienside Pier")
       end
+    end
+  end
+
+  describe "Records Over Given Threshold- U21" do
+    before (:each) do
+      @san_diego = Location.create!(title: 'San Diego', has_reefs: false, num_of_species: 250, peak_season: 'April - September', region: "North America", water_temp: "50F - 62F", description: "Home of the NAVY SEALS")
+      @navy_port = @san_diego.dives.create!(title: "Navy Port", beginner: false, max_depth:90, current_strength: "Strong", charter_loc: "Coronado Island, San Diego")
+      @la_jolla = @san_diego.dives.create!(title: "La Jolla Cove", beginner: true, max_depth:45, current_strength: "Mild", charter_loc: "La Jolla, San Diego")
+      @oceanside = @san_diego.dives.create!(title: "Oceanside Pier", beginner: true, max_depth:25, current_strength: "Mild", charter_loc: "Oceanside, San Diego")
+    end
+    it 'When I visit the parent/chind index i see a form that allow me to input a number value' do
+      visit("/locations/#{@san_diego.id}/dives")
+      expect(page).to have_field(:search)
+    end
+
+    it "when I input a number and click the submit buttom, I am brought back to current index page with only those records" do
+      visit("/locations/#{@san_diego.id}/dives")
+      expect(page).to have_content("Oceanside Pier")
+      fill_in :search, :with => "40"
+      click_on "Find Dives"
+      expect(current_path).to eq("/locations/#{@san_diego.id}/dives")
+      expect(page).to have_content("Navy Port")
+      expect(page).to have_content("La Jolla Cove")
+      expect(page).to_not have_content("Oceanside Pier")
     end
   end
 end

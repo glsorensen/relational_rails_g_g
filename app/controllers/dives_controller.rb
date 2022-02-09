@@ -1,6 +1,6 @@
 class DivesController < ApplicationController
   def index
-    #@dives = Dive.all
+    # @dives = Dive.all
     @dives = Dive.true_beginners
   end
 
@@ -16,10 +16,16 @@ class DivesController < ApplicationController
     @dive = Dive.find(params[:id])
     if @dive.update(dive_params)
       @dive.save
-      redirect_to "/dive/#{@dive.id}"
+      redirect_to "/dives/#{@dive.id}"
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @dive = Dive.find(params[:id])
+    @dive.destroy
+    redirect_to '/dives'
   end
 
   private

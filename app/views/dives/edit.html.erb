@@ -1,6 +1,6 @@
 <h1>Edit Location - <%= @dive.title %></h1>
 
-<%= form_with(url: "/dive/#{@dive.id}", method: "patch", local: true) do |f| %>
+<%= form_with(url: "/dives/#{@dive.id}", method: "patch", local: true) do |f| %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -31,8 +31,8 @@
     <%= f.text_field :charter_loc %>
   </p>
 
-  <p>
+  <section id = "submit">
     <%= f.submit "Update #{@dive.title}"%>
-  </p>
+  </section>
 
 <% end %>
