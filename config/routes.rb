@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   get '/teams', to: 'teams#index'
   post '/teams', to: 'teams#create'
+  delete '/teams', to: 'teams#destroy'
   get '/teams/new', to: 'teams#new'
   get '/teams/:id/edit', to: 'teams#edit'
   get '/teams/:id', to: 'teams#show'
