@@ -31,7 +31,6 @@ RSpec.describe 'dives show page', type: :feature do
       expect(page).to have_link("Update #{@coral_sea_trench.title}")
       click_on "Update #{@coral_sea_trench.title}"
       expect(current_path).to eq("/dives/#{@coral_sea_trench.id}/edit")
-      save_and_open_page
     end
 
     it "I see a from, I edit attributes and click submit - '/dive/:id/edit'" do
