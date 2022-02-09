@@ -19,6 +19,7 @@
       <p>Created at: <%= player.created_at %></p>
       <p>Updated at: <%= player.updated_at %></p>
       <p><%= link_to "Update: #{player.name}", "/players/#{player.id}/edit" %></p>
+      <p><%= link_to "Delete: #{player.name}", "/players/#{player.id}", method: :delete  %></p>
       </div>
   <% end %>
 </div>

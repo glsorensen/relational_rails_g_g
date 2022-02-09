@@ -1,9 +1,10 @@
 
   <p>Edit  Player:</p>
     <%= form_with(url: "/players/#{@player.id}", method: :patch, local: true) do |form| %>
-
+    <section id = "Name">
       <%= form.label :name %>
       <%= form.text_field :name %><br>
+    </section>
 
 
     <div id = "Healthy">

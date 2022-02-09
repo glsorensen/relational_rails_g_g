@@ -14,6 +14,6 @@ RSpec.describe "Player Show page" do
     click_link(("Update: #{@player_1.name}") , match: :first)
     expect(current_path).to eq("/players/#{@player_1.id}/edit")
     click_on "Update Player"
-    expect(current_path).to eq("/players/#{@player_1.id}")
+    expect(current_path).to eq("/players/")
   end
 end
