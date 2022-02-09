@@ -45,6 +45,14 @@ RSpec.describe "Team and Player index" do
       @player_3 = @team_2.players.create!(healthy: false, weight_lbs: 196, name: "Steve Yzerman", hometown: "Cranbrook, CAN")
     end
 
+    it 'visits parent/child index page and has an edit child info link' do
+      visit("/teams/#{@team_2.id}/players")
+      expect(current_path).to eq("/teams/#{@team_2.id}/players")
+      expect(page).to have_link("Update: #{@player_1.name}")
+      expect(page).to have_link("Update: #{@player_2.name}")
+      expect(page).to have_link("Update: #{@player_3.name}")
+    end
+
     it "I see a link to sort A-Z on page - '/teams/:id/players'" do
       visit("/teams/#{@team_2.id}/players")
       expect(current_path).to eq("/teams/#{@team_2.id}/players")
@@ -85,6 +93,20 @@ RSpec.describe "Team and Player index" do
       end
       expect(page).to_not have_content("Chris Osgood")
       expect(page).to_not have_content("Steve Yzerman")
+    end
+
+    it 'shows a link for players to be deleted in the teams_player index page' do
+      visit("/teams/#{@team_2.id}/players/")
+      expect(current_path).to eq("/teams/#{@team_2.id}/players/")
+      expect(page).to have_content("Nick Lidstrom")
+      expect(page).to have_content("Chris Osgood")
+      expect(page).to have_content("Steve Yzerman")
+      click_on "Delete: #{@player_3.name}"
+      expect(current_path).to eq("/players")
+      expect(page).to have_content("Nick Lidstrom")
+      expect(page).to have_content("Chris Osgood")
+      expect(page).to_not have_content("Steve Yzerman")
+
     end
   end
 end
