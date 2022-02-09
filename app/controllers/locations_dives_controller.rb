@@ -1,6 +1,5 @@
 class LocationsDivesController < ApplicationController
   def show
-    # binding.pry
     @location = Location.find(params[:id])
     if params[:az] == 'true'
       @dives = @location.dives.alphabetical

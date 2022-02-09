@@ -25,8 +25,8 @@ RSpec.describe "Parent Delete" do
     end
 
     it 'I am redirected to the parent index where parent is gone' do
-      visit("/dive")
-      expect(current_path).to eq("/dive")
+      visit("/dives")
+      expect(current_path).to eq("/dives")
       expect(page).to have_content(@upolu_cay.title)
       expect(page).to have_content(@coral_sea_trench.title)
       expect(page).to have_content(@ribbon_reef.title)
@@ -35,8 +35,8 @@ RSpec.describe "Parent Delete" do
       visit("/locations/#{@great_barrier_reef.id}")
       expect(current_path).to eq("/locations/#{@great_barrier_reef.id}")
       click_on "Delete Great Barrier Reef"
-      visit("/dive")
-      expect(current_path).to eq("/dive")
+      visit("/dives")
+      expect(current_path).to eq("/dives")
       expect(page).to_not have_content(@upolu_cay.title)
       expect(page).to_not have_content(@coral_sea_trench.title)
       expect(page).to_not have_content(@ribbon_reef.title)

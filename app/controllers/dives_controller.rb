@@ -16,7 +16,7 @@ class DivesController < ApplicationController
     @dive = Dive.find(params[:id])
     if @dive.update(dive_params)
       @dive.save
-      redirect_to "/dive/#{@dive.id}"
+      redirect_to "/dives/#{@dive.id}"
     else
       render 'edit'
     end
@@ -25,7 +25,7 @@ class DivesController < ApplicationController
   def destroy
     @dive = Dive.find(params[:id])
     @dive.destroy
-    redirect_to '/dive'
+    redirect_to '/dives'
   end
 
   private

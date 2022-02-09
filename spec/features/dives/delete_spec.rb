@@ -8,19 +8,19 @@ RSpec.describe 'Child Delete' do
     end
 
     it 'I visit a child show page and see a link "Delete Child"' do
-      visit("/dive/#{@upolu_cay.id}")
-      expect(current_path).to eq("/dive/#{@upolu_cay.id}")
+      visit("/dives/#{@upolu_cay.id}")
+      expect(current_path).to eq("/dives/#{@upolu_cay.id}")
       expect(page).to have_link("Delete #{@upolu_cay.title}")
     end
 
     it 'I click on delete child link and the child is deleted' do
-      visit("/dive")
+      visit("/dives")
       expect(page).to have_content(@upolu_cay.title)
       expect(page).to have_content(@upolu_cay.charter_loc)
-      visit("/dive/#{@upolu_cay.id}")
-      expect(current_path).to eq("/dive/#{@upolu_cay.id}")
+      visit("/dives/#{@upolu_cay.id}")
+      expect(current_path).to eq("/dives/#{@upolu_cay.id}")
       click_on "Delete #{@upolu_cay.title}"
-      expect(current_path).to eq("/dive")
+      expect(current_path).to eq("/dives")
       expect(page).to_not have_content(@upolu_cay.title)
       expect(page).to_not have_content(@upolu_cay.charter_loc)
     end

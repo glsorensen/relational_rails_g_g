@@ -13,7 +13,6 @@ class TeamsController < ApplicationController
   end
 
   def create
-    binding.pry
     team = Team.new({
       title: params[:team][:title],
       in_playoffs: params[:team][:in_playoffs],

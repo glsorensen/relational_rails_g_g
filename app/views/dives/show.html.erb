@@ -13,6 +13,6 @@
   <%= @dive.created_at %></p>
 <p>Updated at:
   <%= @dive.updated_at %></p>
-<a href="/dive/<%=@dive.id%>/edit">Update
+<a href="/dives/<%=@dive.id%>/edit">Update
   <%=@dive.title%></a>
-<%= link_to "Delete #{@dive.title}", "/dive/#{@dive.id}", method: :delete %>
+<%= link_to "Delete #{@dive.title}", "/dives/#{@dive.id}", method: :delete %>
