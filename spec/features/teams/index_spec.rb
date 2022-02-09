@@ -60,16 +60,52 @@ RSpec.describe "Team index page", type: :feature do
 
     visit "/teams"
     # binding.pry
-    save_and_open_page
+
     expect(current_path).to eq('/teams')
     within "#teams" do
       expect(page.all('.team')[0]).to have_content("Avalanche")
       expect(page.all('.team')[1]).to have_content("Red Wings")
     end
 
-   #expected_array = [ 'Avalanche', 'Red Wings' ]
-    #
-    # page.all.map(&:text).should eq(expected_array)
+  end
+
+  describe "create new team link" do
+    it 'has a link new team' do
+
+      visit "/teams"
+
+      expect(current_path).to eq("/teams")
+      expect(page).to have_content("Create New Team")
+      click_link "Create New Team"
+      expect(current_path).to eq("/teams/new")
+      fill_in "Name", with: "Kings"
+      find('#in_playoffs', :text => 'false').click
+      fill_in("Total wins", with: 40)
+      # fill_in :placeholder => 'Total Wins', with: '40', visible: false
+      fill_in "City", with: "Los Angeles"
+      fill_in "Home arena", with: "Staples Center"
+      click_on "Create Team"
+    end
+
+    it "has a working link to update the team" do
+
+      team_11 = Team.create!(in_playoffs: true, total_wins: 43, name: "Oranges", city: "Colorado", home_arena: "Ball Arena")
+
+
+      visit "/teams"
+
+      expect(current_path).to eq("/teams")
+      click_link "Update:" , match: :first
+      expect(current_path).to eq("/teams/#{team_11.id}/edit")
+      fill_in "Name", with: "Blues"
+      find('#in_playoffs', :text => 'false').click
+      fill_in("Total wins", with: 40)
+      # fill_in :placeholder => 'Total Wins', with: '40', visible: false
+      fill_in "City", with: "Los Angeles"
+      fill_in "Home arena", with: "Staples Center"
+      click_on "Update Team"
+      expect(current_path).to eq("/teams/#{team_11.id}")
+    end
 
   end
 end
