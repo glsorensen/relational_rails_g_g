@@ -67,8 +67,24 @@ RSpec.describe "Team and Player index" do
         expect(page.all('.player')[1]).to have_content("Nick Lidstrom")
         expect(page.all('.player')[2]).to have_content("Steve Yzerman")
        end
+     end
+    it "can filter players by weight_lbs" do
+      visit("/teams/#{@team_2.id}/players")
+      expect(current_path).to eq("/teams/#{@team_2.id}/players")
+      # save_and_open_page
+      within "#players" do
+        expect(page.all('.player')[0]).to have_content("Nick Lidstrom")
+        expect(page.all('.player')[1]).to have_content("Chris Osgood")
+        expect(page.all('.player')[2]).to have_content("Steve Yzerman")
+      end
+      fill_in "Find players over a given Weight:", with: 200
+      click_button "Search"
+      expect(current_path).to eq("/teams/#{@team_2.id}/players")
+      within "#players" do
+        expect(page.all('.player')[0]).to have_content("Nick Lidstrom")
+      end
+      expect(page).to_not have_content("Chris Osgood")
+      expect(page).to_not have_content("Steve Yzerman")
     end
   end
-
-
 end
