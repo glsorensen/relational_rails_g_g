@@ -1,0 +1,25 @@
+
+<h1><%= @location.title  %></h1>
+
+<%= form_tag("/locations/#{@location.id}/dives", method: :get) do %>
+  <%= label_tag(:search, "Max Depth Greater Than:")%>
+  <%= number_field_tag :search %>
+  <%= submit_tag("Find Dives") %>
+<% end %><br>
+
+<a href="/locations/<%=@location.id%>/dives/new">Create New Dive</a>
+<p><%= link_to "Sort Dives: A-Z", "/locations/#{@location.id}/dives?az=true" %></p>
+<div id = "dives">
+  <% @dives.each do |dive| %>
+    <div class="dive">
+    <h3><%= dive.title %></h3>
+    <p>Beginner dive: <%= dive.beginner %></p>
+    <p>Max depth: <%= dive.max_depth %></p>
+    <p>Strength of current: <%= dive.current_strength %></p>
+    <p>Location of charter: <%= dive.charter_loc %></p>
+    <p>Created at: <%= dive.created_at %></p>
+    <p>Updated at: <%= dive.updated_at %></p>
+    <%= link_to "Edit #{dive.title}", "/dives/#{dive.id}/edit" %>
+    </div>
+  <% end %>
+</div>

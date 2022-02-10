@@ -1,0 +1,14 @@
+
+<h1>All Teams</h1>
+<a href="/teams/new">Create New Team</a>
+<div id = "teams">
+  <% @teams.each_with_index do |team, index| %>
+    <div class= "team">
+      <h3><%=team.name%></h3>
+      <p>Created at: <%= team.created_at %></p>
+
+       <p><%= link_to "Update: #{team.name}", "/teams/#{team.id}/edit" %></p>
+       <p><%= link_to "Delete: #{team.name}", "/teams/#{team.id}", method: :delete  %></p>
+    </div>
+  <% end %>
+</div>

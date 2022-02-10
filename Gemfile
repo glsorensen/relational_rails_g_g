@@ -40,7 +40,11 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
   gem 'simplecov'
-end
+  gem 'capybara'
+  gem 'launchy'
+  gem 'shoulda-matchers', '~> 4.0'
+
+  gem 'orderly'
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -51,3 +55,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'awesome_print'
+gem 'table_print'
+gem 'irbtools'
+end

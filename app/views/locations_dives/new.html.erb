@@ -1,0 +1,27 @@
+<h1> New Dive </h1>
+
+
+<%= form_with(url: "/locations/#{@location.id}/dives", method: "post", local: true) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+
+  <div id = "beginner">
+    <%= f.label :beginner %>
+    <%= f.select :remote, options_for_select([true, false]), class: 'true_false' %><br>
+  </div>
+
+  <%= f.label :max_depth %>
+  <%= f.number_field :max_depth %><br>
+
+  <div id = "current_strength">
+    <%= f.label :current_strength %>
+    <%= f.select :remote, options_for_select(["mild", "moderate", "severe"]), class: 'text' %><br>
+  </div>
+
+
+
+  <%= f.label :charter_loc %>
+  <%= f.text_field :charter_loc %><br>
+
+  <%= f.submit %>
+<% end %>

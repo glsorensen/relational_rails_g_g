@@ -1,0 +1,37 @@
+
+
+<form action="/locations" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <%= form_with model: @location, class: "location_form" do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %><br>
+
+    <div id = "has_reefs">
+      <%= f.label :has_reefs %>
+      <%= f.select :remote, options_for_select([true, false]), class: 'true_false' %><br>
+    </div>
+
+    <%= f.label :num_of_species %>
+    <%= f.number_field :num_of_species %><br>
+
+    <%= f.label :peak_season %>
+    <%= f.text_field :peak_season %><br>
+
+    <%= f.label :region %>
+    <%= f.text_field :region %><br>
+
+    <%= f.label :water_temp %>
+    <%= f.text_field :water_temp %><br>
+
+    <%= f.label :description %>
+    <%= f.text_field :description %><br>
+
+    <%= f.submit %>
+  <% end %>
+</form>
+
+<!-- <p>Enter a new location:</p>
+
+<input type='text' name='location[title]'/><br/>
+<textarea name='location[description]'></textarea><br/>
+<input type='submit'/> -->

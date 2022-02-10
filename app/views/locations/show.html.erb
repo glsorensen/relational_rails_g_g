@@ -1,0 +1,12 @@
+
+<h1><%= @location.title %></h1>
+<a href="/locations/<%=@location.id%>/dives">See All <%=@location.title%> Dives</a>
+<p>Number of dives: : <%= @dives %></p>
+<p>Description: <%= @location.description %></p>
+<p>Has reefs: <%= @location.has_reefs %></p>
+<p>Number of species: <%= @location.num_of_species %></p>
+<p>Peak Season: <%= @location.peak_season %></p>
+<p>Region: <%= @location.region %></p>
+<p>Water Temperature: <%= @location.water_temp %></p>
+<a href="/locations/<%=@location.id%>/edit">Update <%=@location.title%></a>
+<%= link_to "Delete #{@location.title}", "/locations/#{@location.id}", method: :delete %>

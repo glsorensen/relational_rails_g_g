@@ -1,0 +1,13 @@
+
+<% @dives.each do |dive| %>
+  <h3><%= dive.title %></h3>
+  <p>Location ID: <%= dive.location_id %></p>
+  <p>Beginner dives welcome: <%= dive.beginner %></p>
+  <p>Max depth: <%= dive.max_depth %></p>
+  <p>Strength of current: <%= dive.current_strength %></p>
+  <p>Charter location: <%= dive.charter_loc %></p>
+  <p>Created at: <%= dive.created_at %></p>
+  <p>Updated at: <%= dive.updated_at %></p>
+  <%= link_to "Edit #{dive.title}", "dives/#{dive.id}/edit" %>
+  <%= link_to "Delete #{dive.title}", "/dives/#{dive.id}", method: :delete %>
+<% end %>
