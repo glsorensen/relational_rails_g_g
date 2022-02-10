@@ -41,6 +41,12 @@ class LocationsController < ApplicationController
     end
   end
 
+  def destroy
+    @location = Location.find(params[:id])
+    @location.destroy
+    redirect_to '/locations'
+  end
+
   private
     def location_params
       params.permit(:title, :has_reefs, :num_of_species, :peak_season,

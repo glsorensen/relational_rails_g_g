@@ -5,8 +5,8 @@ RSpec.describe 'dives index page', type: :feature do
     location_1 = Location.create!(title: 'Key Largo', has_reefs: true, num_of_species: 600, peak_season: 'June - October', region: "North America", water_temp: "72F - 86F", description: "Great place")
     dive_1 = Dive.create!(title: "Flahertys Cave", location_id: location_1.id, beginner: true, max_depth:45, current_strength: "Strong", charter_loc: "Cozumel, MX")
 
-    visit '/dive'
-    expect(current_path).to eq("/dive")
+    visit '/dives'
+    expect(current_path).to eq("/dives")
     expect(page).to have_content(dive_1.title)
     expect(page).to have_content(dive_1.location_id)
     expect(page).to have_content(dive_1.beginner)
@@ -26,8 +26,8 @@ RSpec.describe 'dives index page', type: :feature do
     end
 
     it 'visits child index page and only sees true beginners' do
-      visit '/dive'
-      expect(current_path).to eq("/dive")
+      visit '/dives'
+      expect(current_path).to eq("/dives")
       expect(page).to have_content(@la_jolla.title)
       expect(page).to have_content(@la_jolla.location_id)
       expect(page).to have_content(@la_jolla.beginner)
@@ -37,13 +37,13 @@ RSpec.describe 'dives index page', type: :feature do
     end
 
     it 'visits child index page and only sees true beginners' do
-      visit '/dive'
-      expect(current_path).to eq("/dive")
+      visit '/dives'
+      expect(current_path).to eq("/dives")
       expect(page).to_not have_content(@navy_port.title)
       expect(page).to_not have_content(@navy_port.beginner)
     end
 
-    describe 'Dive update from dive index page - U18' do
+    describe 'Dive update from dives index page - U18' do
       before (:each) do
         @san_diego = Location.create!(title: 'San Diego', has_reefs: false, num_of_species: 250, peak_season: 'April - September', region: "North America", water_temp: "50F - 62F", description: "Home of the NAVY SEALS")
         @navy_port = @san_diego.dives.create!(title: "Navy Port", beginner: true, max_depth:90, current_strength: "Strong", charter_loc: "Coronado Island, San Diego")
@@ -52,8 +52,8 @@ RSpec.describe 'dives index page', type: :feature do
       end
 
       it 'visits child index page and has an edit child info link' do
-        visit('/dive')
-        expect(current_path).to eq('/dive')
+        visit('/dives')
+        expect(current_path).to eq('/dives')
         expect(page).to have_link("Edit #{@navy_port.title}")
         expect(page).to have_link("Edit #{@la_jolla.title}")
         expect(page).to have_link("Edit #{@oceanside.title}")
@@ -61,21 +61,21 @@ RSpec.describe 'dives index page', type: :feature do
 
 
       it 'I click on link and takes me to edit page' do
-        visit('/dive')
-        expect(current_path).to eq('/dive')
+        visit('/dives')
+        expect(current_path).to eq('/dives')
         expect(page).to have_content("Oceanside Pier")
         expect(page).to_not have_content("Solana Pier")
         click_on "Edit #{@oceanside.title}"
-        expect(current_path).to eq("/dive/#{@oceanside.id}/edit")
+        expect(current_path).to eq("/dives/#{@oceanside.id}/edit")
       end
 
       it 'allows me to edit child like U11' do
-        visit("/dive/#{@oceanside.id}/edit")
-        expect(current_path).to eq("/dive/#{@oceanside.id}/edit")
+        visit("/dives/#{@oceanside.id}/edit")
+        expect(current_path).to eq("/dives/#{@oceanside.id}/edit")
         fill_in "Title", :with => 'Solana Pier'
         click_on "Update #{@oceanside.title}"
-        visit('/dive')
-        expect(current_path).to eq('/dive')
+        visit('/dives')
+        expect(current_path).to eq('/dives')
         expect(page).to have_link("Edit Solana Pier")
         expect(page).to have_content("Solana Pier")
         expect(page).to_not have_content("Oceanside Pier")
@@ -97,7 +97,31 @@ RSpec.describe 'dives index page', type: :feature do
         expect(page).to have_content("Oceanside Pier")
         expect(page).to_not have_content("Solana Pier")
         click_on "Edit #{@oceanside.title}"
-        expect(current_path).to eq("/dive/#{@oceanside.id}/edit")
+        expect(current_path).to eq("/dives/#{@oceanside.id}/edit")
+      end
+
+      describe 'delete from child index - U23' do
+        before(:each) do
+          @key_largo = Location.create!(title: 'Key Largo', has_reefs: true, num_of_species: 600, peak_season: 'June - October', region: "Carribean", water_temp: "72F - 86F", description: "Great place & warm weather!")
+          flahertys_cave = @key_largo.dives.create!(title: "Flahertys Cave", beginner: true, max_depth:45, current_strength: "Strong", charter_loc: "Port Largo Villasm Key Largo")
+
+        end
+        it 'visits dives index and has a link to delete child' do
+          visit '/dives'
+          expect(current_path).to eq('/dives')
+          expect(page).to have_content("Flahertys Cave")
+          expect(page).to have_link("Delete Flahertys Cave")
+        end
+
+        it 'deletes child and child is no longer there' do
+          visit '/dives'
+          expect(current_path).to eq('/dives')
+          expect(page).to have_content("Flahertys Cave")
+          save_and_open_page
+          click_on "Delete Flahertys Cave"
+          expect(current_path).to eq('/dives')
+          expect(page).to_not have_content("Flahertys Cave")
+        end
       end
     end
   end

@@ -8,7 +8,17 @@ class PlayersController < ApplicationController
   end
 
   def edit
+# binding.pry
     @player = Player.find(params[:id])
+
+  end
+
+  def destroy
+    player = Player.find(params[:id])
+    player.destroy
+
+    redirect_to "/players"
+
   end
 
   def create
@@ -25,8 +35,8 @@ class PlayersController < ApplicationController
   def update
     player = Player.find(params[:id])
     player.update(player_params)
-
-    redirect_to "/players/#{player.id}"
+    player.save
+    redirect_to "/players/"
   end
 
   private

@@ -1,8 +1,10 @@
 class LocationsDivesController < ApplicationController
   def show
+    @location = Location.find(params[:id])
     if params[:az] == 'true'
-      @location = Location.find(params[:id])
-      @dives = Dive.alphabetical
+      @dives = @location.dives.alphabetical
+    elsif !params[:search].nil?
+      @dives = @location.dives.depth_greater_than(params[:search])
     else
       @location = Location.find(params[:id])
       @dives = @location.dives
@@ -25,7 +27,6 @@ class LocationsDivesController < ApplicationController
 
   private
     def dive_params
-      params.permit(:title, :beginner, :max_depth,
-                    :current_strength, :charter_loc)
+      params.permit(:title, :beginner, :max_depth, :current_strength, :charter_loc, :search)
     end
 end

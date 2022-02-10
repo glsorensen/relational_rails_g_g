@@ -16,6 +16,14 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
   end
 
+  def destroy
+    team = Team.find(params[:id])
+    team.destroy
+
+    redirect_to "/teams"
+
+  end
+
   def create
     team = Team.new({
       in_playoffs: params[:team][:in_playoffs],

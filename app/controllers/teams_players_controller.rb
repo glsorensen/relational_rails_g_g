@@ -7,6 +7,8 @@ class TeamsPlayersController < ApplicationController
     @team = Team.find(params[:id])
       if params[:sort]
         @players = @team.sort_a_z
+      elsif params[:filter]
+        @players =@team.players.above_weight(params[:filter])
       else
         @players = Player.where(team_id: @team.id)
       end
@@ -26,5 +28,5 @@ class TeamsPlayersController < ApplicationController
   private
   def players_param
    params.permit(:name, :healthy, :total_wins, :weight_lbs)
- end
+  end
 end

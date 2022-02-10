@@ -1,16 +1,18 @@
 
-key_largo = Location.create!(title: 'Key Largo', has_reefs: true, num_of_species: 600, peak_season: 'June - October', region: "Carribean", water_temp: "72F - 86F", description: "Great place & warm weather!")
-san_diego = Location.create!(title: 'San Diego', has_reefs: false, num_of_species: 250, peak_season: 'April - September', region: "North America", water_temp: "50F - 62F", description: "Home of the NAVY SEALS")
-great_barrier_reef = Location.create!(title: 'Great Barrier Reef', has_reefs: true, num_of_species: 2500, peak_season: 'Year round', region: "Australia", water_temp: "62F - 86F", description: "Please save and preserve our reef!")
-flahertys_cave = Dive.create!(title: "Flahertys Cave", location_id: key_largo.id, beginner: false, max_depth:45, current_strength: "Strong", charter_loc: "Port Largo Villasm Key Largo")
-sorensons_shore = Dive.create!(title: "Sorensons Shore", location_id: key_largo.id, beginner: false, max_depth:65, current_strength: "Moderate", charter_loc: "Cannon Beach, Key Largo")
-jackson_reef = Dive.create!(title: "Jacksons Reef", location_id: key_largo.id, beginner: true, max_depth:35, current_strength: "Mild", charter_loc: "Marina Del Mar, Key Largo")
-navy_port = Dive.create!(title: "Navy Port", location_id: san_diego.id, beginner: false, max_depth:90, current_strength: "Strong", charter_loc: "Coronado Island, San Diego")
-la_jolla = Dive.create!(title: "La Jolla Cove", location_id: san_diego.id, beginner: true, max_depth:45, current_strength: "Mild", charter_loc: "La Jolla, San Diego")
-oceanside = Dive.create!(title: "Ocienside Pier", location_id: san_diego.id, beginner: true, max_depth:25, current_strength: "Mild", charter_loc: "Oceanside, San Diego")
-upolu_cay = Dive.create!(title: "Upola Cay", location_id: great_barrier_reef.id, beginner: true, max_depth:60, current_strength: "Mild", charter_loc: "Cain, Australia")
-coral_sea_trench = Dive.create!(title: "Coral Sea Trench", location_id: great_barrier_reef.id, beginner: false, max_depth:125, current_strength: "Strong", charter_loc: "Port Douglas, Australia")
-ribbon_reef = Dive.create!(title: "Ribbon Reef", location_id: great_barrier_reef.id, beginner: false, max_depth:55, current_strength: "Moderate", charter_loc: "Agincourt, Australia")
+@key_largo = Location.create!(title: 'Key Largo', has_reefs: true, num_of_species: 600, peak_season: 'June - October', region: "Carribean", water_temp: "72F - 86F", description: "Great place & warm weather!")
+@flahertys_cave = @key_largo.dives.create!(title: "Flahertys Cave", beginner: false, max_depth:45, current_strength: "Strong", charter_loc: "Port Largo Villasm Key Largo")
+@sorensons_shore = @key_largo.dives.create!(title: "Sorensons Shore", beginner: false, max_depth:65, current_strength: "Moderate", charter_loc: "Cannon Beach, Key Largo")
+@jackson_reef = @key_largo.dives.create!(title: "Jacksons Reef", beginner: true, max_depth:35, current_strength: "Mild", charter_loc: "Marina Del Mar, Key Largo")
+
+@san_diego = Location.create!(title: 'San Diego', has_reefs: false, num_of_species: 250, peak_season: 'April - September', region: "North America", water_temp: "50F - 62F", description: "Home of the NAVY SEALS")
+@navy_port = @san_diego.dives.create!(title: "Navy Port", beginner: false, max_depth:90, current_strength: "Strong", charter_loc: "Coronado Island, San Diego")
+@la_jolla = @san_diego.dives.create!(title: "La Jolla Cove", beginner: true, max_depth:45, current_strength: "Mild", charter_loc: "La Jolla, San Diego")
+@oceanside = @san_diego.dives.create!(title: "Ocienside Pier", beginner: true, max_depth:25, current_strength: "Mild", charter_loc: "Oceanside, San Diego")
+
+@great_barrier_reef = Location.create!(title: 'Great Barrier Reef', has_reefs: true, num_of_species: 2500, peak_season: 'Year round', region: "Australia", water_temp: "62F - 86F", description: "Please save and preserve our reef!")
+@upolu_cay = @great_barrier_reef.dives.create!(title: "Upola Cay", beginner: true, max_depth:60, current_strength: "Mild", charter_loc: "Cain, Australia")
+@coral_sea_trench = @great_barrier_reef.dives.create!(title: "Coral Sea Trench", beginner: false, max_depth:125, current_strength: "Strong", charter_loc: "Port Douglas, Australia")
+@ribbon_reef = @great_barrier_reef.dives.create!(title: "Ribbon Reef", beginner: false, max_depth:55, current_strength: "Moderate", charter_loc: "Agincourt, Australia")
 
 
 team_1 = Team.create!(in_playoffs: true, total_wins: 43, name: "Avalanche", city: "Colorado", home_arena: "Ball Arena")

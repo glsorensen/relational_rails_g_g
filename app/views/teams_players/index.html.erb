@@ -2,7 +2,13 @@
 <h1><%= @team.name %></h1>
 <p><%= link_to "Add New Player", "/teams/#{@team.id}/players/new" %></p>
 <p><%= link_to "Sort A-Z", "/teams/#{@team.id}/players?sort=asc" %></p>
+<%= form_with url: "/teams/#{@team.id}/players?filter=weight_lbs", method: :get, local: true do |form|  %>
 
+  <%= form.label :filter, "Find players over a given Weight:" %>
+  <%= form.number_field :filter, step: :any %><%= form.submit "Search" %>
+<% end %>
+
+<!-- , method: :patch, -->
 <div id = "players">
   <% @players.each do |player| %>
      <div class="player">
@@ -13,6 +19,7 @@
       <p>Created at: <%= player.created_at %></p>
       <p>Updated at: <%= player.updated_at %></p>
       <p><%= link_to "Update: #{player.name}", "/players/#{player.id}/edit" %></p>
+      <p><%= link_to "Delete: #{player.name}", "/players/#{player.id}", method: :delete  %></p>
       </div>
   <% end %>
 </div>
