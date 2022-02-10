@@ -46,7 +46,7 @@ RSpec.describe 'locations show page', type: :feature do
     fill_in "Description", with: "Tacos & Dives!"
     click_button "Update #{location_1.title}"
     expect(current_path).to eq("/locations/#{location_1.id}")
-    save_and_open_page
+
     expect(page).to have_content("Fiji")
 
   end

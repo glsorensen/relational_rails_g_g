@@ -45,7 +45,7 @@ RSpec.describe "Location-Dive Creation" do
       find('#beginner', :text => 'false').click
       fill_in "Max depth", :with => '25'
       find('#current_strength', :text => 'moderate').click
-      save_and_open_page
+
       fill_in "Charter loc", :with => 'Border City, CA'
       click_on "Save"
       visit "/locations/#{@san_diego.id}/dives"

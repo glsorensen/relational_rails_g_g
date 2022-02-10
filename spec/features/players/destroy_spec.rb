@@ -10,7 +10,6 @@ RSpec.describe "Destroy Team" do
         player_3 = Player.create!(healthy: false, weight_lbs: 190, name: "Patrick Roy", hometown: "Quebeq City, CAN" , team_id: team_1.id)
 
         visit "/players/#{player_1.id}"
-        save_and_open_page
         expect(current_path).to eq("/players/#{player_1.id}")
         expect(page).to have_content("Joe Sakic")
         expect(page).to have_link("Delete: #{player_1.name}")

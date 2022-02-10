@@ -117,7 +117,6 @@ RSpec.describe 'dives index page', type: :feature do
           visit '/dives'
           expect(current_path).to eq('/dives')
           expect(page).to have_content("Flahertys Cave")
-          save_and_open_page
           click_on "Delete Flahertys Cave"
           expect(current_path).to eq('/dives')
           expect(page).to_not have_content("Flahertys Cave")
